@@ -1,4 +1,4 @@
-TITLE	= disy_thesis_template_en
+TITLE	= disy_thesis
 
 compilePDFLatex:
 	pdflatex ${TITLE}.tex
