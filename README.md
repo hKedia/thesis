@@ -21,8 +21,8 @@ Secure and Scalable data exchange using Public Blockchains
 
 #### Analysis & Comparison
 
-* Analysis layer-2 solutions such as side chains, parallel chains and virtual chains.
-* Analysis the metrics for a secure smart contract platform.
+* Analyse layer-2 solutions such as side chains, parallel chains and virtual chains.
+* Analyse the metrics for a secure smart contract platform.
 * A through camparison between Ethereum and other smart contract blockchain.
 
 #### Development
