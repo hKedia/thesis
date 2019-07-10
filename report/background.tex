@@ -1,0 +1,9 @@
+\section{Background}\label{sec::background}
+
+\subsection{Blockchain}
+
+The current Internet Protocol stack consists of four layers: the \textit{Link Layer} puts data onto a wire; the \textit{Internet Layer} routes the data; the \textit{Transport Layer} persists the data; and the \textit{Application Layer} provides data abstraction and delivers it to the end user in the form of applications. All four layers work seamlessly for exchanging of data, but not value. Bitcoin\cite{nakamoto2008bitcoin} and other cryptocurrencies help define the fifth Internet Protocol layer which enables the exchange of value as fast and efficiently as data\cite{raval2016decentralized}.
+
+Exchanging value across the Internet presents two challenges. First, every participant in the network must agree upon a shared state and Second, the asset being exchanged should have a clearly defined owner. These challenges are commonly referred as the \textit{Byzantine General's} problem\cite{lamport1982byzantine} and \textit{Double-spending} problem\cite{chohan2017double} respectively. Blockchain, the technology underlying Bitcoin and most cryptocurrencies solved the above problems by means of decentralized consensus\footnote{\url{https://en.wikipedia.org/wiki/Consensus_(computer_science)}}.
+
+At a higher level, blockchains are append-only, totally-ordered, replicated logs of transactions\cite{bonneau2015research}. A transaction is a signed statement that transfers the ownership of an asset from one cryptographic keypair to another. Peers\footnote{A Node having the full copy of the blockchain.} in the network, append new transactions by packaging them into a block and then executing a leader election protocol which determines who gets to append the next block\cite{nelson2016extending}. This election protocol is determined by the underlying consensus algorithm of the blockchain. Each block contains the cryptographic hash of the previous block along with some transactional data.
