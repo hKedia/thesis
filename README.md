@@ -2,7 +2,7 @@
 
 #### Working Title
 
-Secure and Scalable data exchange using Public Blockchains
+Secure Smart Contracts & Scalable Decentralized Applications (dApps)
 
 #### Task Description
 
@@ -11,19 +11,19 @@ Secure and Scalable data exchange using Public Blockchains
 
 #### Organisation
 
-* April - Thesis Scope
-* May - Implementation
-* June - Implementation
-* July - Result Analysis
-* August - Write Up
-* September - First Draft
-* October - Final Draft & Presentation
+- April - Thesis Scope [Done]
+- May - Implementation [Done]
+- June - Research [Done]
+- July - Result Analysis [Done]
+- August - Write Up
+- September - First Draft
+- October - Final Draft & Presentation
 
 #### Analysis & Comparison
 
-* Analyse layer-2 solutions such as side chains, parallel chains and virtual chains.
-* Analyse the metrics for a secure smart contract platform.
-* A through camparison between Ethereum and other smart contract blockchain.
+- Analyse layer-2 solutions such as side chains, parallel chains and virtual chains.
+- Analyse the metrics for a secure smart contract platform.
+- A through camparison between Ethereum and other smart contract blockchain.
 
 #### Development
 
@@ -31,6 +31,6 @@ Implementation of the decentralized file sharing applications using one of the l
 
 #### Desired Outcome
 
-* A set of metrics for a secure smart contract platform.
-* Comparison results between Ethereum and another public blockchain.
-* An appication for secure data exchange which is scalable and inexpensive to use.
+- A set of metrics for a secure smart contract platform.
+- Comparison results between Ethereum and another public blockchain.
+- An appication for secure data exchange which is scalable and inexpensive to use.

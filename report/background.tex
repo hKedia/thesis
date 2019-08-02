@@ -1,7 +1,24 @@
 \section{Background}\label{sec::background}
 
-\subsection{Blockchain}
+\subsection{Pretty Good Privacy (PGP)}
+PGP\footnote{\url{https://en.wikipedia.org/wiki/Pretty_Good_Privacy}} is a encryption program which uses public-key cryptography\cite{stallings1999cryptography} to provide cryptographic privacy and authentication for data communication. It can be also used to sign messages such that the receiver can verify both the identity of the sender and integrity of the message.
 
+It is built upon a Distributed Web of Trust in which a user's trustworthiness is established by others who can vouch through a digital signature for that user's identity\cite{wilson2015pretty}.
+
+There are a number of inherent weaknesses which prevented the widespread adoption of PGP. These include the following\cite{wilson2015pretty}:
+\begin{itemize}
+	\item Trust relationships are built on a subjective honor system.
+	\item Only first degree relationships can be fully trusted.
+	\item Levels of trust are difficult to quantify with actual values.
+	\item Issues with the Web of Trust itself (Certification of Endorsement).
+\end{itemize}
+
+\subsection{Public Key Infrastructure (PKI)}
+PKI is a system for creation, storage and distribution of digital certificates which can be used to verify ownership of a public key\cite{weise2001public}. In today's Internet, third parties such as DNS registrars, ICANN, X.509 Certificate Authorities (CAs), and social media companies are responsible for the creation and management of online identities. Thus our online identities lie in the control of third-parties and are borrowed or rented rather than owned. This results in severe usability and security challenges\cite{allen2015decentralized}.
+
+There is a possible alternate approach called \textit{decentralized public key infrastructure (DPKI)}, which returns control of online identities to the entities they belong to. By doing so, DPKI addresses many usability and security challenges that plague traditional public key infrastructure (PKI)\cite{allen2015decentralized}.
+
+\subsection{Blockchain}
 The current Internet Protocol stack consists of four layers: the \textit{Link Layer} puts data onto a wire; the \textit{Internet Layer} routes the data; the \textit{Transport Layer} persists the data; and the \textit{Application Layer} provides data abstraction and delivers it to the end user in the form of applications. All four layers work seamlessly for exchanging of data, but not value. Bitcoin\cite{nakamoto2008bitcoin} and other cryptocurrencies help define the fifth Internet Protocol layer which enables the exchange of value as fast and efficiently as data\cite{raval2016decentralized}.
 
 Exchanging value across the Internet presents two challenges. First, every participant in the network must agree upon a shared state and Second, the asset being exchanged should have a clearly defined owner. These challenges are commonly referred as the \textit{Byzantine General's} problem\cite{lamport1982byzantine} and \textit{Double-spending} problem\cite{chohan2017double} respectively. Blockchain, the technology underlying Bitcoin and most cryptocurrencies solved the above problems by means of decentralized consensus\footnote{\url{https://en.wikipedia.org/wiki/Consensus_(computer_science)}}.
