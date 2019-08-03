@@ -1,5 +1,5 @@
 %
-% $Id:  ENTER YOUR ID/FILENAME HERE$
+% $Id:  01/752437$
 %
 % This template is based on LLNCS.DEM, the demonstration file of the LaTeX macro 
 % package from Springer-Verlag for Lecture Notes in Computer Science, version 2.2 for
@@ -17,7 +17,7 @@
 
 
 % one-sided document style suited for bachelor/master theses (english)
-\documentclass[a4paper]{llncs} 
+\documentclass[a4paper]{report} 
 % two-sided document sytel suited for bachelor/master theses (english)
 %\documentclass[twoside,a4paper]{llncs} 
 % one-sided document sytel suited for bachelor/master theses (german)
@@ -46,8 +46,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{figures/}			% somehow, doesn't work, thus use command
 %\newcommand{\gfx}[0]{../gfx/}
-\titlerunning{~}				% set off for llncs	
-\authorrunning{~}				% set off for llncs
+%\titlerunning{~}				% set off for llncs	
+%\authorrunning{~}				% set off for llncs
 
 \newtheorem{thm}{Lemma}%[]             % lemma definition
 \newcommand{\factor}[0]{10}
@@ -87,9 +87,9 @@
 \renewcommand{\footrulewidth}{0.5pt}
  
 \fancyhf{}
-\fancyhead[LE,RO]{\thepage}
-\fancyhead[RE,LO]{\textit{\nouppercase{\rightmark}}}
-\fancyfoot[EL,OR]{\thepage}
+%\fancyhead[LE,RO]{\thepage}
+%\fancyhead[RE,LO]{\textit{\nouppercase{\rightmark}}}
+%\fancyfoot[EL,OR]{\thepage}
  
 %\fancypagestyle{plain}{ %
 %\fancyhf{} % remove everything
@@ -201,6 +201,8 @@
 \input{background} 
 \cleardoublepage
 \input{main}
+\cleardoublepage
+\input{results}
 \cleardoublepage
 \input{discussion}
 \cleardoublepage
