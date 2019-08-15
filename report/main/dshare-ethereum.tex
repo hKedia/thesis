@@ -65,7 +65,7 @@ Figure~\ref{fig:ethereum-upload} visualizes the working of the application when 
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/ethereum-upload}
-	\caption{\label{fig:ethereum-upload} File Upload}
+	\caption{\label{fig:ethereum-upload} File Upload using Ethereum dApp}
 \end{figure}
 
 As soon as a user submits a file to be uploaded, it's SHA-256\footnote{\url{https://www.movable-type.co.uk/scripts/sha256.html}} hash is calculated and a timestamp is created by submitting the hash to the bitcoin blockchain using the OriginStamp API\footnote{\url{http://doc.originstamp.org/}}.
@@ -79,7 +79,7 @@ Sharing a file requires the recipient's Ethereum address and uploader's private 
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{figures/ethereum-share}
-	\caption{\label{fig:ethereum-share} File Sharing}
+	\caption{\label{fig:ethereum-share} File Sharing using Ethereum dApp}
 \end{figure}
 
 Firstly, the file's IPFS location is retrieved from the \texttt{File} contract. From this location, the encrypted key is download and decrypted using uploader's private key. Once decrypted, the key is again encrypted using a recipient's public key. The new encrypted key is again uploaded to the IPFS network. Finally, the IPFS location of the key is saved into the \texttt{File} contract by calling \texttt{shareFile()}.
