@@ -106,6 +106,48 @@
 		
 	
 \section{Identity}
+	User identities are essential to using internet applications. In order to confirm their identity, users must provide some information. This information depends on the application's authentication process. If an application maintains a user database, it requires a username and a password and sometimes a second factor. If an application relies on a third-party, like Google\footnote{\url{https://developers.google.com/identity/}} or Facebook\footnote{\url{https://developers.facebook.com/docs/facebook-login/}} for identity management, it uses the OAuth 2.0 authentication\cite{hardt2012oauth} protocol, which identifies a user by generating an assertion from the identity service.
+	
+	Third party identity providers implementing the OAuth\footnote{\url{https://oauth.net/}} protocol often have their own version of implementation which leads to identity fragmentation across the web. OpenID\cite{recordon2006openid} is a decentralized identity protocol that allows users to create one identity which can be carried across multiple providers. However, the user still needs to trust one of the service providers with their identity information\cite{raval2016decentralized}.
+	
+	Another way of authenticating users with an application is by using digital certificates\cite{tycksen2001digital}. These certificates provide a proof of ownership of a public key. Authentication and management of public keys is facilitated using a Public Key Infrastructure (PKI)\cite{adams2003understanding} system. Currently, the most common approaches to PKIs are: Certificate Authorities (CAs) and PGP Web of Trust\cite{abdul1997pgp}. 
+	
+	A Certificate Authority (CA) acts a trusted third party responsible for management and distribution of digital certificates for a network of users\cite{fromknecht2014decentralized}. These trusted third parties introduces central control in a PKI system making them prone to single point of failure risk\cite{dooley2001designing}.
+	
+	In PGP Web of trust, authentication is entirely decentralized; users are able to designate others as trustworthy by signing their public keys. This process generates a digital certificate containing the user's public key and signatures from entities that have deemed him trustworthy. This system does benefit from its distributed nature as there is no central control. However, PGP does not offer identity retention. There is no guarantee of consistency and nothing prevents multiple users from creating public keys for the same identity\cite{fromknecht2014decentralized}.
+	
+	\subsection{Decentralized Public Key Infrastructure (DPKI)}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=200pt, height=150pt]{figures/zooko-triangle}
+			\caption{\label{fig:zooko-triangle} Zooko's Triangle\protect\footnotemark}
+		\end{figure}
+		\footnotetext{\url{https://commons.wikimedia.org/wiki/File:Zooko\%27s_Triangle.svg}}
+		
+		The foundational precept of a DPKI is that \textit{identities belong to the entities they represent}. This requires designing a \textit{decentralized} infrastructure where every identity is controlled by its \textit{principal owner} and not by some trusted third party\cite{allen2015decentralized}.
+		
+		DPKI is essentially a system to gives unique names to participants in a network protocol. These names should have three desirable traits(Zooko's triangle) namely: \textit{Human-meaningful}, \textit{Decentralized} and \textit{Secure}. OpenID solved security and human-meaningfulness.
+		
+		Namecoin\footnote{\url{https://www.namecoin.org/}} was the first working solution that satisfied all three traits of Zooko's triangle by adding decentralization. It was the first fork of Bitcoin\cite{nakamoto2008bitcoin} protocol designed to act as a decentralized domain name server (DNS) for \textit{.bit} addresses. Namecoin's blockchain essentially could be used as an intermediary between a user and the service requesting user's identity\cite{raval2016decentralized}. It allowed a user to \textit{register} a name by creating a blockchain transaction. This transaction included the desired name which get embedded under the \textit{/id} namespace.
+	
+	\subsection{Decentralized Identifiers (DIDs)}
+	A DID\footnote{\url{https://w3c-ccg.github.io/did-spec/}} is a new type of identifier that is globally unique, resolvable with high availability and cryptographically verifiable. DIDs typically contains cryptographic key pair which enables the controller of a DID to prove control over it.
+	
+	The concept of global unique decentralized identifiers is not new; Universally Unique Identifiers\footnote{\url{https://en.wikipedia.org/wiki/Universally_unique_identifier}}(UUIDs), also called Globally Unique Identifiers (GUIDs) were first such identifiers developed in 1980s and formally specified in RFC4122\footnote{\url{https://tools.ietf.org/html/rfc4122}}. Another class of identifiers knows as persistent identifiers was standardized as Uniform Resource Names (URNs) by RFC8141\footnote{\url{https://tools.ietf.org/html/rfc8141}}.
+	
+	However, UUIDs are not globally resolvable and URNs, if resolvable, require a central registry. Further, neither UUIDs or URNs have the ability to cryptographically verify ownership of the identifier. DIDs, on the other hand, fulfills all four requirements: persistence, global resolvability, cryptographically verifiability, and decentralization required for a self-sovereign identity\cite{smith2016identity}.
+	
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{figures/urn-format}
+		\caption{\label{fig:urn-format} The URN Specification}
+	\end{figure}
+
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{figures/did-format}
+		\caption{\label{fig:did-format} The DID Specification}
+	\end{figure}
+	
+	The DID (Figure~\ref{fig:did-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/did-format.png}}) specification follows the same pattern as the URN (Figure~\ref{fig:urn-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/urn-format.png}}) specification. The key difference is that with DIDs, the namespace component identifies a \textit{DID method} which defines how DIDs work with a specific blockchain. The \textit{DID method} specifications must define the format and generation of the method-specific identifier. The DID methods can also be developed for identifiers registered in federated or centralized identity management systems, thus creating a interoperability bridge between the worlds of centralized, federated and decentralized identifiers.
 	
 \section{Value}
 	
