@@ -131,23 +131,44 @@
 		Namecoin\footnote{\url{https://www.namecoin.org/}} was the first working solution that satisfied all three traits of Zooko's triangle by adding decentralization. It was the first fork of Bitcoin\cite{nakamoto2008bitcoin} protocol designed to act as a decentralized domain name server (DNS) for \textit{.bit} addresses. Namecoin's blockchain essentially could be used as an intermediary between a user and the service requesting user's identity\cite{raval2016decentralized}. It allowed a user to \textit{register} a name by creating a blockchain transaction. This transaction included the desired name which get embedded under the \textit{/id} namespace.
 	
 	\subsection{Decentralized Identifiers (DIDs)}
-	A DID\footnote{\url{https://w3c-ccg.github.io/did-spec/}} is a new type of identifier that is globally unique, resolvable with high availability and cryptographically verifiable. DIDs typically contains cryptographic key pair which enables the controller of a DID to prove control over it.
+		A DID\footnote{\url{https://w3c-ccg.github.io/did-spec/}} is a new type of identifier that is globally unique, resolvable with high availability and cryptographically verifiable. DIDs typically contains cryptographic key pair which enables the controller of a DID to prove control over it.
+		
+		The concept of global unique decentralized identifiers is not new; Universally Unique Identifiers\footnote{\url{https://en.wikipedia.org/wiki/Universally_unique_identifier}}(UUIDs), also called Globally Unique Identifiers (GUIDs) were first such identifiers developed in 1980s and formally specified in RFC4122\footnote{\url{https://tools.ietf.org/html/rfc4122}}. Another class of identifiers knows as persistent identifiers was standardized as Uniform Resource Names (URNs) by RFC8141\footnote{\url{https://tools.ietf.org/html/rfc8141}}.
+		
+		However, UUIDs are not globally resolvable and URNs, if resolvable, require a central registry. Further, neither UUIDs or URNs have the ability to cryptographically verify ownership of the identifier. DIDs, on the other hand, fulfills all four requirements: persistence, global resolvability, cryptographically verifiability, and decentralization required for a self-sovereign identity\cite{smith2016identity}.
+		
+		\begin{figure}[h]
+			\includegraphics[width=\linewidth]{figures/urn-format}
+			\caption{\label{fig:urn-format} The URN Specification}
+		\end{figure}
 	
-	The concept of global unique decentralized identifiers is not new; Universally Unique Identifiers\footnote{\url{https://en.wikipedia.org/wiki/Universally_unique_identifier}}(UUIDs), also called Globally Unique Identifiers (GUIDs) were first such identifiers developed in 1980s and formally specified in RFC4122\footnote{\url{https://tools.ietf.org/html/rfc4122}}. Another class of identifiers knows as persistent identifiers was standardized as Uniform Resource Names (URNs) by RFC8141\footnote{\url{https://tools.ietf.org/html/rfc8141}}.
+		\begin{figure}[h]
+			\includegraphics[width=\linewidth]{figures/did-format}
+			\caption{\label{fig:did-format} The DID Specification}
+		\end{figure}
+		
+		The DID (Figure~\ref{fig:did-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/did-format.png}}) specification follows the same pattern as the URN (Figure~\ref{fig:urn-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/urn-format.png}}) specification. The key difference is that with DIDs, the namespace component identifies a \textit{DID method} which defines how DIDs work with a specific blockchain. The \textit{DID method} specifications must define the format and generation of the method-specific identifier. The DID methods can also be developed for identifiers registered in federated or centralized identity management systems, thus creating a interoperability bridge between the worlds of centralized, federated and decentralized identifiers.
 	
-	However, UUIDs are not globally resolvable and URNs, if resolvable, require a central registry. Further, neither UUIDs or URNs have the ability to cryptographically verify ownership of the identifier. DIDs, on the other hand, fulfills all four requirements: persistence, global resolvability, cryptographically verifiability, and decentralization required for a self-sovereign identity\cite{smith2016identity}.
+	\subsection{Related Work}
+		\subsubsection{Blockstack Authentication}
+		Blockstack\footnote{\url{https://blockstack.org/}} is a decentralized computing network and app ecosystem that uses public-key cryptography and blockchain technology to provide its users with a DPKI system thereby making it possible to have a universal username that works across applications without the need for any passwords.
+		
+		\begin{figure}[h]
+			\includegraphics[width=\linewidth]{figures/app-sign-in}
+			\caption{\label{fig:app-sign-in} Blockstack Authentication Flow\protect\footnotemark}
+		\end{figure}
+		\footnotetext{\url{https://docs.blockstack.org/storage/images/app-sign-in.png}}
+		
+		Blockstack Auth\footnote{\url{https://docs.blockstack.org/develop/overview_auth.html}} is a token-based authentication\footnote{\url{https://www.w3.org/2001/sw/Europe/events/foaf-galway/papers/fp/token_based_authentication/}} system. When a user signs into an application, an \texttt{authRequest} token is sent to the Blockstack Browser. Once the sign-in is approved, the Blockstack Browser responds with an \texttt{authResponse} token. This response provides the application with enough information to generate and store authentication data. Since all usernames are registered on the blockchain, every application have an up-to-date view of all usernames and corresponding public keys. This eliminates the need for a server-side identity provider.
 	
-	\begin{figure}[h]
-		\includegraphics[width=\linewidth]{figures/urn-format}
-		\caption{\label{fig:urn-format} The URN Specification}
-	\end{figure}
-
-	\begin{figure}[h]
-		\includegraphics[width=\linewidth]{figures/did-format}
-		\caption{\label{fig:did-format} The DID Specification}
-	\end{figure}
-	
-	The DID (Figure~\ref{fig:did-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/did-format.png}}) specification follows the same pattern as the URN (Figure~\ref{fig:urn-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/urn-format.png}}) specification. The key difference is that with DIDs, the namespace component identifies a \textit{DID method} which defines how DIDs work with a specific blockchain. The \textit{DID method} specifications must define the format and generation of the method-specific identifier. The DID methods can also be developed for identifiers registered in federated or centralized identity management systems, thus creating a interoperability bridge between the worlds of centralized, federated and decentralized identifiers.
+		Figure~\ref{fig:app-sign-in} visualizes the authentication flow for an application using Blockstack Auth. When a user chooses to \textbf{Sign in with Blockstack}, it calls the \texttt{redirectToSignIn()} method which sends an \texttt{authRequest} token to the Blockstack Browser\footnote{\url{https://github.com/blockstack/blockstack-browser}}. Upon receiving the request, the Blockstack Browser presents the user with a choice of IDs to use to sign in, as well as a list of permissions the application needs. Upon selecting an ID, the Blockstack Browser redirects back to the application with a \texttt{authResponse} token containing three pieces of information\footnote{\url{https://blockstack.org/whitepaper.pdf}}:
+		\begin{itemize}
+			\item The user's username (or the hash of the public key if no username is set).
+			\item An \textit{application-specific} private key for encrypting and signing user's data. This key is deterministically  generated from the user's master private key, the ID used to sign in, and the application's HTTP Origin.
+			\item The URLs to the user private data locker (Gaia Hub\footnote{\url{https://github.com/blockstack/gaia/tree/master/hub}}).
+		\end{itemize}
+		
+		Above pieces of information instructs the application on how to find and store a user's data on their behalf.
 	
 \section{Value}
 	
