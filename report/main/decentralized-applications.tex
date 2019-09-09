@@ -187,8 +187,35 @@
 	\end{figure}
 	\footnotetext{\url{https://raw.githubusercontent.com/ethereumbuilders/GitBook/master/en/vitalik-diagrams/statetransition.png}}
 	
-	Blockchain, the underlying technology of Bitcoin can also be applied to build systems which can represent assets in the physical world. \textit{Secure property titles with owner authority\footnote{\url{https://nakamotoinstitute.org/secure-property-titles/}}}, a document written by Nick Szabo\footnote{\url{https://en.wikipedia.org/wiki/Nick_Szabo}} describes how a blockchain-based system can be used to build a land registry.
+	Blockchain, the underlying technology of Bitcoin can also be applied to build systems which can represent assets in the physical world. For example, \textit{Secure property titles with owner authority\footnote{\url{https://nakamotoinstitute.org/secure-property-titles/}}}, a document written by Nick Szabo\footnote{\url{https://en.wikipedia.org/wiki/Nick_Szabo}} describes how a blockchain-based system can be used to build a land registry. Ethereum\cite{buterin2014ethereum}, an alternative protocol with a built-in Turing-complete programming language enables such systems by allowing anyone to write \textit{smart contracts}\cite{szabo1997formalizing} where they can create their own arbitrary rules of ownership\footnote{\url{https://github.com/ethereum/wiki/wiki/White-Paper}}.
+	
+	Ethereum also enables the creation of \textit{tokens} which allows us to represent something specific in an application, for example, economic value, a dividend, a stake or even a voting right\footnote{\url{https://education.district0x.io/general-topics/understanding-ethereum/the-role-of-tokens/}}. The two most common tokens standards in the Ethereum ecosystem are \textit{ERC-20}\footnote{\url{https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md}}: A class of identical tokens, and \textit{ERC-721}\footnote{\url{https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md}}: A class of unique tokens. These token standards can be used to tokenize ownership of any arbitrary data or even real world assets thereby enabling an \textit{Internet of Value}\footnote{\url{https://hackernoon.com/a-vision-of-the-internet-of-value-ad187abf5826}}.
 	
 \section{Computing}
+	Any web application needs computing resources to work. Traditional internet relied on a \textit{client-server} model where server is usually a more powerful, better connected machine and thus provided most of the computing resources. This, however, also made server as a single bottleneck for performance and reliability\cite{crowcroft2003peer}. As internet connectivity improved and web applications became more complex, the demand for computing resources increased.
+	
+	Virtualization\footnote{\url{http://www.kernelthread.com/publications/virtualization/}}, a concept pioneered by the VM\cite{creasy1981origin} operating system led to the emergence of \textit{cloud computing}. Cloud computing satisfied the growing demand of web applications by providing an on-demand delivery of computing resources over the internet. This greatly defined the current internet architecture where applications relies on cloud services providers who provides computing resources based on different service models (Figure~\ref{fig:service-models}).
+	
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{figures/service-models}
+		\caption{\label{fig:service-models} Cloud computing service models\protect\footnotemark}
+	\end{figure}
+	\footnotetext{\url{https://static.bluepiit.com/blog/wp-content/uploads/sites/2/2015/12/types-of-cloud-computing-models.png}}
+	
+	Cloud computing, however, poses privacy concerns as it requires entrusting data to information systems managed by third-party cloud service providers who has access to all of user's data at any time and could accidentally or deliberately use it for unauthorized purposes\cite{ryan2011cloud}. Because data from multiple entities can be stored on a large cloud servers, it poses security concerns as well. Hackers can theoretically gain control of huge amounts of data through a single attack - a process called \textit{hyperjacking}\footnote{\url{https://www.securityweek.com/deep-dive-hyperjacking}}.
+	
+	Blockchain can be used to create a decentralized global market where infrastructure providers,  application owners and individual users can come together to trade their unused computing resources. This will also allow us to harness the computing resources of millions of personal computers and workstations connected to the public internet which have hundreds of compute cycles going unused every second\cite{crowcroft2003peer}. Coupled with end-to-end encryption, this network of connected computers can overcome the security and privacy concerns posed by Cloud computing.
+	
+	\subsection{Related Work}
+		\subsubsection{Golem Network}
+		Golem\footnote{\url{https://golem.network/crowdfunding/Golemwhitepaper.pdf}} aims to create a decentralized supercomputer by creating a global market for computing power. It connects computers in a peer-to-peer network, enabling every participant to share their unused resources. It uses the Ethereum blockchain for accounting, which enables direct payments between providers, application owners and individual users. Finally, it employs an \textit{Application Registry} which is an Ethereum smart contract, to which anyone can publish their application.
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{figures/golem-network}
+			\caption{\label{fig:golem-network} Overview of Golem Network Architecture\protect\footnotemark}
+		\end{figure}
+		\footnotetext{Adapted from \url{https://en.bitcoinwiki.org/wiki/Golem_Worldwide_Supercomputer}}
 	
 \section{Bandwidth}
+	
