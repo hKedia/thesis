@@ -228,3 +228,24 @@
 	
 	Mesh networks are the decentralized version of standards internet where users don't need to go through a central gateway. In a mesh network, nodes connect to as many adjacent nodes for efficient routing of data. However, a decentralized consensus system is required to incentivize all participants to share their bandwidth. Blockchain can used to serve as an incentive layer effective creating a decentralized marketplace for bandwidth. Mark Nadal and Dr. Amber Cazzell describes one such protocol in their paper \textit{A Trustless Decentralized Bandwidth Incentive}\footnote{\url{https://web.stanford.edu/~nadal/A-Decentralized-Data-Synchronization-Protocol.pdf}}.
 	
+	\subsection{Related Work}
+		\subsubsection{NOIA Network}
+		NOIA\footnote{\url{https://noia.network/}} network is a Distributed peer-to-peer content delivery network, governed by the blockchain where nodes are incentivized for providing storage and unused bandwidth to the network.
+		
+		\begin{figure}[h]
+			\includegraphics[width=\linewidth]{figures/ipv6-segment-header}
+			\caption{\label{fig:segment-header} IPv6 Segment Routing Header\protect\footnotemark}
+		\end{figure}
+		\footnotetext{\url{https://docs.noia.network/noia/segment-routing--srv6-}}
+		
+		NOIA enables a \textit{programmable internet}\footnote{\url{https://docs.noia.network/noia/programmable-internet}} by leveraging IPv6 and Segment Routing (SR). IPv6 increases the address size from 32 bits to 128 bits. This increase in packet size allows NOIA to encode custom information in packet headers thus providing an identification system for nodes connected to the network. These \textit{custom headers} (Figure~\ref{fig:segment-header}) enables SR by leveraging the source routing paradigm. SR is then used to create a Software Defined Network (SDN) where nodes are identified by their segment identifiers (SIDs). SIDs are registered on the NOIA Ledger to create a network topology of SR enabled access points. A Decentralized Internet Transit Exchange (DITEX) is used for trading of access points as a Transit.
+		
+		\subsubsection{Althea Network}
+		Althea\footnote{\url{https://althea.net/}} Network aims to solve the "last mile" problem by connecting a source of internet connectivity to the end users using a mesh network topology where packets are forwarded using the Babel routing protocol\cite{chroboczek2011babel}. It creates a decentralized ISP where routers pay each other for bandwidth with cryptocurrencies. Governance in Althea network is done using a \textit{proof-of-stake} blockchain built using the Cosmos\footnote{\url{https://cosmos.network/}} protocol.
+		
+		\begin{figure}[h]
+			\includegraphics[width=\linewidth]{figures/althea-network}
+			\caption{\label{fig:althea-network} The Althea Network\protect\footnotemark}
+		\end{figure}
+		\footnotetext{Adapted from: \url{https://althea.net/whitepaper}}
+	
