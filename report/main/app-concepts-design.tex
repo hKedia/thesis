@@ -1,4 +1,4 @@
-\chapter{Application Design}\label{chapter::decentralizedapps}
+\chapter{Application Concepts \& Design}\label{chapter::app-concepts-design}
 
 \section{Introduction}
 	An Application software or \textit{app} is a computer program designed to perform a specific set of tasks or actions for the end user. There are countless number of applications in use today and the majority of them are web applications following a centralized client-server model\cite{raval2016decentralized}.
@@ -28,7 +28,7 @@
 	
 	The blockchain helped solve the Byzantine Generals Problem\cite{lamport1982byzantine}. This problem describes a situation where all participating nodes in a distributed network must agree upon every message that is being transmitted between nodes, but where some of the nodes are corrupt and disseminating false information or are unreliable. This agreement is called as \textbf{consensus}. With Bitcoin\cite{nakamoto2008bitcoin}, decentralized consensus became possible. Agreement is achieved in the Bitcoin network by way of \textit{proof-of-work\footnote{\url{https://en.bitcoin.it/wiki/Proof_of_work}}} consensus mechanism which is resistant to Sybil Attack\cite{douceur2002sybil}. Proof-of work is both computationally and energy expensive; other consensus mechanism such as \textit{proof-of-stake\footnote{\url{https://en.bitcoin.it/wiki/Proof_of_Stake}}} relies on stake in the system instead of computational power.
 	
-\section{Concepts}
+\section{Application Concepts}
 	There are five concepts in a web application that have traditionally been implemented in way that puts control with a centralized entity: data, identity, value, computing and bandwidth\cite{raval2016decentralized}. Each of these require trust in a 3rd party - a trust which can be betrayed. Recent advancements in distributed-system technology can put users in control of these things. Below sections describes each concept in detail and shows how one can build applications in a way such that centralized control is not required.
 
 \section{Data}
@@ -226,7 +226,7 @@
 	\end{figure}
 	\footnotetext{\url{https://commons.wikimedia.org/wiki/File:Internet\_Connectivity\_Distribution\_\%26_Core.svg}}
 	
-	Mesh networks are the decentralized version of standards internet where users don't need to go through a central gateway. In a mesh network, nodes connect to as many adjacent nodes for efficient routing of data. However, a decentralized consensus system is required to incentivize all participants to share their bandwidth. Blockchain can used to serve as an incentive layer effective creating a decentralized marketplace for bandwidth. Mark Nadal and Dr. Amber Cazzell describes one such protocol in their paper \textit{A Trustless Decentralized Bandwidth Incentive}\footnote{\url{https://web.stanford.edu/~nadal/A-Decentralized-Data-Synchronization-Protocol.pdf}}.
+	Mesh networks are the decentralized version of standards internet where users don't need to go through a central gateway. In a mesh network, nodes connect to as many adjacent nodes for efficient routing of data. However, a decentralized consensus system is required to incentivize all participants to share their bandwidth. Blockchain can used to serve as an incentive layer effectively creating a decentralized marketplace for bandwidth. Mark Nadal and Dr. Amber Cazzell describes one such protocol in their paper \textit{A Trustless Decentralized Bandwidth Incentive}\footnote{\url{https://web.stanford.edu/~nadal/A-Decentralized-Data-Synchronization-Protocol.pdf}}.
 	
 	\subsection{Related Work}
 		\subsubsection{NOIA Network}
@@ -248,4 +248,9 @@
 			\caption{\label{fig:althea-network} The Althea Network\protect\footnotemark}
 		\end{figure}
 		\footnotetext{Adapted from: \url{https://althea.net/whitepaper}}
+	
+\section{Application Design}
+	Designing any web application requires understanding of the underlying architecture. This section combines all the application concepts to visualize the underlying architecture which enables decentralized applications with data ownership.
+	
+	\subsection{Decentralized Architecture}
 	

@@ -1,8 +1,8 @@
 # M.Sc. Thesis
 
-#### Working Title
+#### Title
 
-Data Ownership & Privacy Preserving Applications
+Building Decentralized Applications with Data Ownership
 
 #### Task Description
 
@@ -16,8 +16,8 @@ Data Ownership & Privacy Preserving Applications
 - May - Implementation [Done]
 - June - Research [Done]
 - July - Result Analysis [Done]
-- August - Write Up
-- September - First Draft
+- August - Application Concepts [Done]
+- September - Application Design and Building a dApp
 - October - Final Draft & Presentation
 
 #### Analysis & Comparison
