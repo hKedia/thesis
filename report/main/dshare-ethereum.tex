@@ -1,4 +1,4 @@
-\chapter{PoC 1: Ethereum dApp}\label{chapter:poc1}
+\chapter{Example Application 1}\label{chapter:poc1}
 
 \section{Introduction}
 Existing applications for sharing files are central solutions and therefore suffer from single point of failure risk. Moreover, using central services for securing data means that we have to trust a 3rd party with our data thus exposing it to manipulation risks. Hence, a decentralized
@@ -13,23 +13,6 @@ Ethereum\cite{buterin2014ethereum} is a blockchain platform for building decentr
 
 \subsection{InterPlanetary File System (IPFS)}
 IPFS\cite{benet2014ipfs} is a peer-to-peer file transfer protocol which enables a shared file system between all its connected peers. It achieves this by combining previous peer-to-peer systems such as Distributed Hash Tables (DHT), BitTorrent\cite{cohen2008bittorrent}, and Git\cite{loeliger2012version}. The data in the IPFS network are modeled as a Merkle DAG\footnote{Merkle directed acyclic graph - similiar to a Merkle tree data structure however they do not need to be balanced and it’s non-leaf nodes can contain some data.} thus providing a throughput storage system with content-addressed hyperlinks.
-
-\begin{figure}[h]
-	\includegraphics[width=\linewidth]{figures/ipfs-stack}
-	\caption{\label{fig:ipfs-stack} IPFS Stack}
-\end{figure}
-
-Figure~\ref{fig:ipfs-stack}\footnote{Adopted from: \url{https://image.slidesharecdn.com/ipfs-171229085327/95/ipfs-12-638.jpg?cb=1514537643}} shows the IPFS Stack. It consists of sub-protocols, each providing a different functionality.
-
-\begin{itemize}
-	\item Identities - node identification and verification.
-	\item Network - connection management among peers.
-	\item Routing - peer lookup using DHT.
-	\item Exchange - data exchange strategies among peers.
-	\item Objects - a content-addressed Merkle DAG.
-	\item Files - versioned file system.
-	\item Naming - A self-certifying mutable name system.
-\end{itemize}
 
 \subsection{OriginStamp}
 OriginStamp\cite{hepp2018originstamp} is a blockchain based system for decentralized timestamping. It uses the Bitcoin blockchain for the creation of trusted and immutable timestamps for any piece of data. Timestamps created by OriginStamp can be verified independently by anyone.

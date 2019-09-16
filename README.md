@@ -1,13 +1,14 @@
 # M.Sc. Thesis
 
-#### Working Title
+#### Title
 
-Secure Smart Contracts & Scalable Decentralized Applications (dApps)
+Building Decentralized Applications with Data Ownership
 
 #### Task Description
 
-1. Blockchain is slow and interently non-scalable. Explore different layer-2 solutions which enable scalable applications while ensuring security.
-2. Smart Contracts on Ethereum are vulnerable to hacks due to design flaws in the Solidity language. Explore different metrics which make a Smart Contract system secure and compare Ethereum to other Smart Contract enabled blockchains.
+1. A Model for Data Ownership.
+2. Exploring the emerging protocols which enables a decentralize web.
+3. Concepts which enables building of applications where user is in control of their data.
 
 #### Organisation
 
@@ -15,22 +16,19 @@ Secure Smart Contracts & Scalable Decentralized Applications (dApps)
 - May - Implementation [Done]
 - June - Research [Done]
 - July - Result Analysis [Done]
-- August - Write Up
-- September - First Draft
+- August - Application Concepts [Done]
+- September - Application Design and Building a dApp
 - October - Final Draft & Presentation
 
 #### Analysis & Comparison
 
-- Analyse layer-2 solutions such as side chains, parallel chains and virtual chains.
-- Analyse the metrics for a secure smart contract platform.
-- A through camparison between Ethereum and other smart contract blockchain.
+- Explore different concepts of a web application and compare the traditional way of building applications with the new decentralize way enabled by the Blockchain.
 
 #### Development
 
-Implementation of the decentralized file sharing applications using one of the layer-2 solutions.
+- Implementation of the decentralized file sharing applications one using Ethereum and another using Blockstack to demonstrate the state of the art.
 
 #### Desired Outcome
 
-- A set of metrics for a secure smart contract platform.
-- Comparison results between Ethereum and another public blockchain.
-- An appication for secure data exchange which is scalable and inexpensive to use.
+- Defines different concepts of an application and shows how to build applications where user owns their data.
+- Two Proof of Concept applications to show the workings of these protocols with secure file share as an example.
