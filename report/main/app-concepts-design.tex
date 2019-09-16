@@ -253,7 +253,7 @@
 	Designing any web application requires understanding of the underlying architecture. This section combines all the application concepts to visualize the underlying architecture which enables decentralized applications with data ownership.
 	
 	\subsection{Decentralized Application Architecture}
-	Self-sovereign identity is one of the most important element in decentralized applications.  The DIDs\footnote{\url{https://w3c-ccg.github.io/did-spec/}} specifications enables the creation of a DPKI system on top of any blockchain. A user can create a \textit{decentralized identity} by registering their public key with a desired username by creating a blockchain transaction.
+	Self-sovereign identity is one of the most important element in decentralized applications with data ownership.  The DIDs\footnote{\url{https://w3c-ccg.github.io/did-spec/}} specifications enables the creation of a DPKI system on top of any blockchain. A user can create a \textit{decentralized identity} by registering their public key with a desired username by creating a blockchain transaction.
 	
 	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{figures/did-create}
@@ -270,3 +270,6 @@
 	\end{figure}
 
 	Figure~\ref{fig:dapp-architecture} visualizes the architecture of a decentralized web application. Authentication is handled using a DPKI system. The application connects to various services like storage and database using APIs. The client application encrypts all private data using user's public key before sending it to a decentralized storage network. A database service can be used for easy indexing of data.
+	
+\section{Summary}
+	This chapter outlined the different concepts of a web application and showed how Blockchain enables decentralization for each of the concepts. The key concept which allows us to build decentralized applications with data ownership is \textit{Decentralized Identity}. It enables a Web where we don't have to use username/passwords anymore and where our data have cryptographic security.
