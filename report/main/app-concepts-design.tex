@@ -1,4 +1,4 @@
-\chapter{Application Concepts \& Design}\label{chapter::app-concepts-design}
+\chapter{Concepts \& Design}\label{chapter::app-concepts-design}
 
 \section{Introduction}
 	An Application software or \textit{app} is a computer program designed to perform a specific set of tasks or actions for the end user. There are countless number of applications in use today and the majority of them are web applications following a centralized client-server model\cite{raval2016decentralized}.
@@ -252,5 +252,21 @@
 \section{Application Design}
 	Designing any web application requires understanding of the underlying architecture. This section combines all the application concepts to visualize the underlying architecture which enables decentralized applications with data ownership.
 	
-	\subsection{Decentralized Architecture}
+	\subsection{Decentralized Application Architecture}
+	Self-sovereign identity is one of the most important element in decentralized applications.  The DIDs\footnote{\url{https://w3c-ccg.github.io/did-spec/}} specifications enables the creation of a DPKI system on top of any blockchain. A user can create a \textit{decentralized identity} by registering their public key with a desired username by creating a blockchain transaction.
 	
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{figures/did-create}
+		\caption{\label{fig:did-create} Creating a Decentralized Identity}
+	\end{figure}
+	
+	A decentralized identity anchored on a blockchain serves two purposes. First, it gives us a cryptographic keypair which can be used by an application for encryption/decryption of data. Second, it serves as a digital wallet for secure exchange of value across the Internet using cryptocurrencies.
+	
+	Decentralized applications follow a \textit{serverless} architecture where backend services such as database, storage and authentication are provided as APIs that enable client applications to connect directly to these services. The frontend components such as business logic and application code are deployed inside a hosting environment such that the servers that run the code is completely abstracted.
+	
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{figures/dapp-architecture}
+		\caption{\label{fig:dapp-architecture} Decentralized Application Architecture}
+	\end{figure}
+
+	Figure~\ref{fig:dapp-architecture} visualizes the architecture of a decentralized web application. Authentication is handled using a DPKI system. The application connects to various services like storage and database using APIs. The client application encrypts all private data using user's public key before sending it to a decentralized storage network. A database service can be used for easy indexing of data.
