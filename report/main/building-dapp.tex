@@ -57,15 +57,18 @@
 				\caption{\label{fig:dshare-ethereum} \textit{dShare-ethereum} Architecture}
 			\end{figure}
 			
-			Figure~\ref{fig:dshare-ethereum} visualizes the application architecture. When a user signs into the application, a MetaMask prompt asks the user to sign a random value. This signature is used to retrieve the public key of the logged-in user. For storing of files we used IPFS. Before uploading to the IPFS network, files are encrypted using AES-GCM\footnote{\url{https://www.aes-gcm.com/}} encryption mechanism. Sharing of encryption keys is facilitated using smart contracts built on Ethereum; thus files can be shared by anyone with an Ethereum address. Finally, OriginStamp is used for immutable timestamping.
+			Figure~\ref{fig:dshare-ethereum} visualizes the application architecture. User authentication is handled by MetaMask. For storing of files we used IPFS. Before uploading to the IPFS network, files are encrypted using AES-GCM\footnote{\url{https://www.aes-gcm.com/}} encryption mechanism. Sharing of encryption keys is facilitated using smart contracts built on Ethereum; thus files can be shared by anyone with an Ethereum address. Finally, OriginStamp is used for immutable timestamping.
 			
 			The front-end of the application is built using React.js\footnote{\url{https://reactjs.org/}}, a JavaScript library for building user interfaces. Solidity was used for writing smart contracts and deployed on the Ethereum test network, Rinkeby\footnote{\url{https://www.rinkeby.io}}. Next.js\footnote{\url{https://nextjs.org/}} was used for server-side rendering (SSR)\footnote{\url{https://nextjs.org/features/server-side-rendering/}}, and Firebase\footnote{\url{https://firebase.google.com/}} was used as a database for storing public Ethereum key of the users.
 			
 		\subsection{Working}
+			\subsubsection{Authentication}
+				When a user logs into the application, she is presented with a MetaMask dialog which asks her to sign a randomly generated value. This signature is used to retrieve the public key for the selected Ethereum address. The public key is then saved to the database and user is logged in.
+			
 			\subsubsection{Smart Contract}
 				The smart contract serves as the bridge between the front-end of the application and the Ethereum Blockchain. Data is read from and written to the blockchain with the help of function calls in the contract. Each function call which modifies some data requires a small fee in the form of gas\footnote{\url{https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas}} which defines the cost for a function execution in Ether. Reading from the blockchain does not require any fees.
 				
-				The application makes use of two contracts, \textit{FileFactory}, which acts as the factory contract for creation of new files and \textit{File}, which represents an individual file.
+				The application makes use of two contracts, \textit{FileFactory}, which acts as the factory contract for creation of new files and \textit{File}, which represents an individual file. Code for both the contracts is available at \url{https://github.com/hKedia/dShare/blob/master/ethereum/contracts/FileShare.sol}
 				
 				\paragraph{FileFactory}
 				\textit{FileFactory} is the contract which is deployed on the Rinkeby test network. It has several mappings which stores the list of file contracts uploaded by a user. Whenever a user uploads a file, a function call is made to the \textit{FileFactory} contract, which in turn deploys the \textit{File} contract and updates the mappings for list of uploaded files and the respective uploader.
@@ -74,25 +77,25 @@
 				File contract is deployed to the blockchain whenever a file is successfully uploaded to the IPFS network using the application. Upon deployed, the constructor function is called. It takes the values passed by the \textit{FileFactory} contract and saves the details to it’s \textit{File} contract.
 			
 			\subsubsection{File Upload}
-				Figure~\ref{fig:ethereum-upload} visualizes the working of the application when a user uploads a file.
+				Figure~\ref{fig:ethereum-upload} visualizes the working of the application when a user uploads a file. Reference code is available at \url{https://github.com/hKedia/dShare/blob/master/pages/files/upload.js}
 				
 				\begin{figure}[h]
 					\includegraphics[width=\linewidth]{figures/ethereum-upload}
-					\caption{\label{fig:ethereum-upload} File Upload using Ethereum dApp}
+					\caption{\label{fig:ethereum-upload} File Upload using \textit{dshare-ethereum}}
 				\end{figure}
 				
 				As soon as a user submits a file to be uploaded, it's SHA-256\footnote{\url{https://www.movable-type.co.uk/scripts/sha256.html}} hash is calculated and a timestamp is created by submitting the hash to the bitcoin blockchain using the OriginStamp API\footnote{\url{http://doc.originstamp.org/}}.
 				
-				Next, the file is encrypted using the SubtleCrypto\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto}} interface with 'AES-GCM'\footnote{\url{https://en.wikipedia.org/wiki/Galois/Counter_Mode}} as the encrypting algorithm. The encrypted data is then combined with the random salt to generate a \texttt{Uint8Array} buffer ready to be uploaded to the IPFS network.
+				Next, the file is encrypted using the SubtleCrypto\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto}} interface with 'AES-GCM'\footnote{\url{https://en.wikipedia.org/wiki/Galois/Counter_Mode}} as the encryption algorithm. The encrypted data is then combined with the random salt to generate a \texttt{Uint8Array} buffer ready to be uploaded to the IPFS network.
 				
 				The key used to encrypt the file is converted to \texttt{JSON} and is encrypted using the uploader's Ethereum public key which is retrieved from the database. This encrypted key and the encrypted data is then uploaded to the IPFS network. Once the file is successfully uploaded, \texttt{createFile()} in the \texttt{FileFactory} contract is called which deploys a new \texttt{File} contract with all details regarding the file saved to the blockchain.
 			
 			\subsubsection{File Sharing}
-				Sharing a file requires the recipient's Ethereum address and uploader's private key. Figure~\ref{fig:ethereum-share} visualizes the working of the application when a user shares a file with another user.
+				Sharing a file requires the recipient's Ethereum address and uploader's private key. Figure~\ref{fig:ethereum-share} visualizes the working of the application when a user shares a file with another user. Reference code is available at \url{https://github.com/hKedia/dShare/blob/master/components/FileSharing.js}
 				
 				\begin{figure}[h]
 					\includegraphics[width=\linewidth]{figures/ethereum-share}
-					\caption{\label{fig:ethereum-share} File Sharing using Ethereum dApp}
+					\caption{\label{fig:ethereum-share} File Sharing using \textit{dshare-ethereum}}
 				\end{figure}
 				
 				Firstly, the file's IPFS location is retrieved from the \texttt{File} contract. From this location, the encrypted key is download and decrypted using uploader's private key. Once decrypted, the key is again encrypted using a recipient's public key. The new encrypted key is again uploaded to the IPFS network. Finally, the IPFS location of the key is saved into the \texttt{File} contract by calling \texttt{shareFile()}.
@@ -100,11 +103,57 @@
 				To stop sharing a file, a function call can be made to the \texttt{File} contract with the recipient's address, which deletes the contract reference from the \texttt{recipientFiles} array.
 			
 			\subsubsection{File Download}
-				Downloading a file requires the user's Ethereum private key. Depending on whether the file is uploaded or shared one, corresponding function from the \texttt{File} contract is called to retrieve the file's details. The key is then decrypted using user's private key and is converted to a valid JSON web key (jwk)\footnote{\url{https://tools.ietf.org/html/rfc7517}} format. The encrypted file data is then converted to a file buffer, and the original file content and the random salt used for encrypting the file is retrieved. Finally, the file is decrypted and saved to the user's local storage.
+				Downloading a file requires the user's Ethereum private key. Depending on whether the file is uploaded or shared one, corresponding function from the \texttt{File} contract is called to retrieve the file's details. The key is then decrypted using user's private key and is converted to a valid JSON web key (jwk)\footnote{\url{https://tools.ietf.org/html/rfc7517}} format. The encrypted file data is then converted to a file buffer, and the original file content and the random salt used for encrypting the file is retrieved. Finally, the file is decrypted and saved to the user's local storage. Reference code for file download is available at \url{https://github.com/hKedia/dShare/blob/master/components/FileDownload.js}
 			
 			\subsubsection{File Archiving}
-				Instead of deleting a \texttt{File} contract, the application provides a way to achieve files. This is also useful to keep track of archived files and restore them at a later date if required. When a file is archived, the \texttt{File} contract address is saved in an array which is later used for filtering the archived files from the UI. Restoring a file removes the \texttt{File} contract address from the archived files array.
+				Instead of deleting a \texttt{File} contract, the application provides a way to achieve files. This is also useful to keep track of archived files and restore them at a later date if required. When a file is archived, the \texttt{File} contract address is saved in an array which is later used for filtering the archived files from the UI. Restoring a file removes the \texttt{File} contract address from the archived files array. The reference code for file archiving is available at \url{https://github.com/hKedia/dShare/blob/master/components/FileDetail.js#L71}
 				
 			\subsubsection{Limitations}
+			This application is built using experimental p2p technologies that is changing very rapidly. Below are some of the limitations:
+			
+			\begin{itemize}
+				\item IPFS nodes treat the stored data as cache, meaning there is no guarantee the data will continue to be available. To overcome this, users should run their own IPFS nodes and \textit{pin}\footnote{\url{https://docs.ipfs.io/guides/concepts/pinning/}} the data that is important.
+				\item MetaMask, the Ethereum wallet used in the application has no function that allows us retrieve the private key of the user within the application. Therefore, whenever a user wants to share or download a file, the private key must be manually provided for decryption.
+			\end{itemize}
 			
 	\section{A File Sharing Application using Blockstack}
+		This section describes the workings of the application \textit{dshare-blockstack}\cite{harsh_kedia_2019_3359854} built using Blockstack\footnote{\url{https://blockstack.org/}}, a decentralized computing network and app ecosystem. The latest version of the application is deployed at \url{https://dshare-blockstack.herokuapp.com/}.
+		
+		\subsection{Use Case}
+		\textit{dshare-blockstack} focus on easy sharing of files between two users. The encryption and decryption is handled by keys generated on user's machine. It leverages the existing cloud infrastructure for storage thereby providing a rich user experience.
+		
+		\subsection{Technologies Used}
+			\subsubsection{Blockstack}
+			Blockstack\cite{ali2016blockstack} is a platform for building highly scalable decentralized applications where users own their data. It implements a DPKI system (see Section~\ref{sec:blockstack-auth}) anchored on the Bitcoin blockchain. It also implements a storage system, Gaia (see Section~\ref{sec:blockstack-gaia}) which leverages the existing cloud infrastructure providing users with private data lockers.
+			
+			\subsubsection{Radiks}
+			"Radiks\footnote{\url{https://github.com/blockstack-radiks/radiks-server}} is a framework for building complex and collaborative decentralized applications, using Blockstack infrastructure under the hood"\footnote{\url{https://blog.blockstack.org/introducing-radiks/}}. It serves as a indexing server for data that is stored in Gaia. \textit{dshare-blockstack} uses the front-end component library, \textit{radiks.js}\footnote{\url{https://github.com/blockstack-radiks/radiks}} for interacting with Radiks.
+		
+		\subsection{Application Architecture}
+			Figure~\ref{fig:dshare-blockstack} visualizes the application architecture. User authentication is handled by the Blockstack browser\footnote{\url{https://browser.blockstack.org/}}. Files are uploaded to the user's Gaia Hub, a private data locker in the cloud. Before uploading, files are encrypted using a symmetric key employing AES-GCM as the encryption mechanism. Sharing logic is implemented using Radiks which provides an API for creating models to represent uploaded files.
+		
+			\begin{figure}[h]
+				\includegraphics[width=\linewidth]{figures/dshare-blockstack}
+				\caption{\label{fig:dshare-blockstack} \textit{dShare-blockstack} Architecture}
+			\end{figure}
+		
+		\subsection{Working}
+		
+			\subsubsection{Authentication}
+			When a user sings into the application, she is redirected to the Blockstack browser. Here she can create a new Blockstack ID or select on of her existing IDs. See Section~\ref{sec:blockstack-auth} for the authentication flow. Once authenticated, user is redirected back to the application and logged in. The public key of the user is saved under \textit{/keys} inside her Gaia hub which is later used for encrypting a file's encryption key.
+			
+			\subsubsection{File Upload}
+			Figure~\ref{fig:blockstack-upload} visualizes the working of the application when a user uploads a file.
+			
+			\begin{figure}[h]
+				\includegraphics[width=\linewidth]{figures/blockstack-upload}
+				\caption{\label{fig:blockstack-upload} File Upload using \textit{dShare-blockstack}}
+			\end{figure}
+			
+			\subsubsection{File Sharing}
+			
+			\subsubsection{File Download}
+			
+			\subsubsection{File Deletion}
+			
+			\subsubsection{Limitations}

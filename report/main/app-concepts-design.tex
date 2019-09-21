@@ -69,7 +69,7 @@
 	\subsection{Storing Data in a Cloud in Encrypted Containers}
 		IPFS enables a way for decentralized storage such that it overcomes the single point of failure risk, however, the user does not control where the data is being stored. Because of this, once a data is added to the network, and is picked up by other nodes for re-hosting, it cannot be taken back as there is no way to verify information deletion\footnote{\url{https://github.com/ipfs/faq/issues/9}}.
 		
-		\subsubsection{Gaia: User-Controlled Storage}
+		\subsubsection{Gaia: User-Controlled Storage}\label{sec:blockstack-gaia}
 		Gaia\cite{ali2016blockstack} is a decentralized storage system that enables user-controlled private data lockers. It works by hosting data in one or more existing storage systems of user's choice. Data on Gaia is encrypted and signed by user-controlled cryptographic keys before being uploaded to a provider. Storing data using existing cloud infrastructure ensures high data availability without compromising on application performance. Further, since each data is signed by keys which a user controls, it ensures that they don't need to trust the underlying cloud providers.
 		
 		\begin{figure}[h]
@@ -150,7 +150,7 @@
 		The DID (Figure~\ref{fig:did-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/did-format.png}}) specification follows the same pattern as the URN (Figure~\ref{fig:urn-format}\footnote{\url{https://w3c-ccg.github.io/did-primer/did-primer-diagrams/urn-format.png}}) specification. The key difference is that with DIDs, the namespace component identifies a \textit{DID method} which defines how DIDs work with a specific blockchain. The \textit{DID method} specifications must define the format and generation of the method-specific identifier. The DID methods can also be developed for identifiers registered in federated or centralized identity management systems, thus creating a interoperability bridge between the worlds of centralized, federated and decentralized identifiers.
 	
 	\subsection{Related Work}
-		\subsubsection{Blockstack Authentication}
+		\subsubsection{Blockstack Authentication}\label{sec:blockstack-auth}
 		Blockstack\footnote{\url{https://blockstack.org/}} is a decentralized computing network and app ecosystem that uses public-key cryptography and blockchain technology to provide its users with a DPKI system thereby making it possible to have a universal username that works across applications without the need for any passwords.
 		
 		\begin{figure}[h]
