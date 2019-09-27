@@ -18,7 +18,7 @@ Building Decentralized Applications with Data Ownership
 - July - Research [Done]
 - August - Application Concepts [Done]
 - September - Writing Application Design and Building a dApp [Done]
-- October - Result Analysis, First Draft, Final Document
+- October - Result & Analysis, Draft, Final Document
 - November - Colloquium
 
 #### Analysis & Comparison
