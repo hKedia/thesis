@@ -1,12 +1,12 @@
 \chapter{Building a Decentralized Application}\label{chapter:building-dapp}
 
 	\section{Introduction}
-	Chapter~\ref{chapter::app-concepts-design} focused on different application concepts and showed the underlying architecture for building decentralized applications where users are in control of their data. This chapter focuses on analyzing the \textit{state-of-the-art} by building two \textit{proof-of-concept} applications for secure file sharing.
+	Chapter~\ref{chapter::app-concepts-design} focused on different application concepts and showed the underlying architecture for building decentralized applications where users are in control of their data. This chapter uses the concepts learned in the previous chapter to build two \textit{proof-of-concept} applications for secure file sharing. This will help us analyze the current \textit{state-of-the-art} protocols for building decentralized applications.
 	
 	\section{Problem Context}
 	Existing applications for sharing files are central solutions and therefore suffer from single point of failure risk. Moreover, using central services for securing data means that we have to trust a 3rd party with our data thus exposing it to manipulation risks. Hence, a decentralized application is required to overcome the problems posed by a central application. With the recent developments in Blockchain technology and p2p storage, it is possible to securely store and share data without using any central server.
 	
-	\section{Requirements}
+	\section{Requirements}\label{sec:requirements}
 	A decentralized file sharing application should have following desirable properties:
 	\begin{itemize}
 		\item Client-side encryption.

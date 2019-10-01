@@ -1,1 +1,78 @@
-\chapter{Results}\label{chapter::results}
+\chapter{Results \& Analysis}\label{chapter::results}
+	\section{Introduction}
+		This chapter compares and analyzes the two \textit{proof-of-concept} applications, \textit{dShare-ethereum} and \textit{dShare-blockstack} for file sharing. We also compare the underlying protocols for decentralized timestamping and decentralized storage. Finally, we compare different blockchains and outline their salient features.
+		
+	\section{Decentralized File Sharing Applications}
+		This section compares and analyses the two \textit{proof-of-concept} decentralized file sharing applications as described in Chapter~\ref{chapter:building-dapp}. We limit our analysis to the functionalities of the two applications and how they stack against the requirements as described in Section~\ref{sec:requirements}.
+		
+	\section{Decentralized Timestamping}
+	
+		\begin{table}[h]
+			\resizebox{\textwidth}{!}{%
+				\begin{tabular}{r|c|c|c|}
+					\cline{2-4}
+					\multicolumn{1}{l|}{}                             & \textbf{Scalability}                 & \textbf{Anchoring Blockchain}             & \textbf{Timestamping Accuracy}          \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Proof Of Existence}} & \cellcolor[HTML]{F4E7E6}Not Scalable & \cellcolor[HTML]{DDF7D4}Bitcoin           & \cellcolor[HTML]{DDF7D4}Per Block       \\ \hline
+					\multicolumn{1}{|r|}{\textbf{OriginStamp}}        & \cellcolor[HTML]{DDF7D4}Scalable     & \cellcolor[HTML]{DDF7D4}Bitcoin           & \cellcolor[HTML]{F4E7E6}Per Time Period \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Chainpoint}}         & \cellcolor[HTML]{DDF7D4}Scalable     & \cellcolor[HTML]{DDF7D4}Bitcoin, Ethereum & \cellcolor[HTML]{F4E7E6}Per Time Period \\ \hline
+				\end{tabular}%
+			}
+			\caption{Comparing Decentralized Timestamping}
+			\label{tab:timestamping}
+		\end{table}
+	
+		Table~\ref{tab:timestamping} gives a comparison overview for decentralized timestamping. \textit{Proof Of Existence} creates a Bitcoin transaction for each hash submitted by the user. Moreover, each certification costs 0.00025 BTC. These limitations make it impractical and expensive for timestamping a large volume of data. 
+		
+		On the other hand, both \textit{OriginStamp} and \textit{Chainpoint}, instead of creating a transaction for each submitted hash, concatenates the submitted hashes over a period of time and creates a single transaction with the aggregated hash. Thus providing a scalable protocol for timestamping which can handle large volume of data.
+		
+	\section{Decentralized Storage}
+	
+		\begin{table}[h]
+			\resizebox{\textwidth}{!}{%
+				\begin{tabular}{r|
+						>{\columncolor[HTML]{F4E7E6}}c |
+						>{\columncolor[HTML]{F4E7E6}}c |
+						>{\columncolor[HTML]{DDF7D4}}c |}
+					\cline{2-4}
+					\multicolumn{1}{l|}{}                                                    & \cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} \textbf{Sia}} & \cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} \textbf{Storj}} & \cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} \textbf{IPFS}} \\ \hline
+					\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Encryption}}        & \cellcolor[HTML]{DDF7D4}Client Side                         & \cellcolor[HTML]{DDF7D4}Client Side                           & \cellcolor[HTML]{F4E7E6}No Encryption by default             \\ \hline
+					\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Storage Contracts}} & Yes                                                         & Yes                                                           & No                                                           \\ \hline
+					\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Ease of Access}}    & Tokens Required                                             & Tokens Required                                               & No Tokens Required                                           \\ \hline
+					\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{File Sharing}}      & No                                                          & No                                                            & \cellcolor[HTML]{F4E7E6}Yes (Insecure)                       \\ \hline
+					\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Configurability}}   & Low                                                         & Low                                                           & High                                                         \\ \hline
+				\end{tabular}%
+			}
+			\caption{Comparing Decentralized Storage}
+			\label{tab:storage}
+		\end{table}
+	
+		Table~\ref{tab:storage} gives a comparison overview for decentralized storage. Both \textit{Sia} and \textit{Storj} provide an encrypted data storage; however, current implementations do not allow for file sharing. Moreover, both require storage contracts and platform specific crypto tokens for access to the network. 
+		
+		IPFS, on the other hand, does not provide encryption by default. Files on the IPFS network are accessed by their hashes; thus anyone with the file's hash can access the file. There are no storage contracts involved for storing files on the IPFS network and it does not require any crypto tokens for accessing the network.
+		
+	\section{Blockchains}
+	
+		\begin{table}[h]
+			\resizebox{\textwidth}{!}{%
+				\begin{tabular}{r|c|c|c|}
+					\cline{2-4}
+					\multicolumn{1}{l|}{}                              & \textbf{Bitcoin}                       & \textbf{Ethereum}                             & \textbf{Cardano}                              \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Consensus Algorithm}} & \cellcolor[HTML]{F7F7C9}Proof Of Work  & \cellcolor[HTML]{F7F7C9}Proof Of Work         & \cellcolor[HTML]{DDF7D4}Proof Of Stake        \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Architecture}}        & \cellcolor[HTML]{F7F7C9}1 - layered    & \cellcolor[HTML]{F7F7C9}1 - layered           & \cellcolor[HTML]{DDF7D4}2 - layered           \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Smart Contracts}}     & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F7F7C9}Yes (Solidity, Vyper) & \cellcolor[HTML]{DDF7D4}Yes (Plutus, Marlowe) \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Block Time}}          & \cellcolor[HTML]{F4E7E6}$\sim$10 min   & \cellcolor[HTML]{DDF7D4}$\sim$15 sec          & \cellcolor[HTML]{DDF7D4}$\sim$20 sec          \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Native Token}}        & \cellcolor[HTML]{F7F7C9}Bitcoin or BTC & \cellcolor[HTML]{F7F7C9}Ether or ETH          & \cellcolor[HTML]{F7F7C9}ADA                   \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Ledger}}              & UTXO based                             & Account based                                & UTXO \& Account based                        \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Treasury}}            & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F4E7E6}No                    & \cellcolor[HTML]{DDF7D4}Yes                   \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Governance}}          & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F4E7E6}No                    & \cellcolor[HTML]{DDF7D4}On - Chain            \\ \hline
+				\end{tabular}%
+			}
+			\caption{Comparing Public Blockchains}
+			\label{tab:blockchains}
+		\end{table}
+	
+		Table~\ref{tab:blockchains} gives a comparison overview for some public blockchains. Bitcoin\cite{nakamoto2008bitcoin} is the first generation blockchain which uses \textit{proof-of-work} as its consensus algorithm. Its designed as a single layer system with a non Turing-complete scripting language\footnote{\url{https://en.bitcoin.it/wiki/Script}} for transactions. It's unit of account, BTC, serves as a store of value and is used to pay for transactions. Bitcoin's Ledger uses a UTXO (unspent transaction output) based transaction model.
+		
+		Ethereum\cite{buterin2014ethereum} is a second generation blockchain which like Bitcoin uses \textit{proof-of-work} as its consensus algorithm. It also has a single layered architecture with a Turing-complete scripting language\footnote{\url{https://github.com/ethereum/solidity}}. Ethereum serves as a platform for building decentralized applications. It's Ledger uses a Accounts based transaction model with ETH as the native currency.
+		
+		Cardano, a third generation blockchain, uses \textit{proof-of-stake} as it's consensus algorithm. The consensus algorithm, \textit{Ouroboros}\cite{kiayias2017ouroboros}, is provably secure with strong security guarantees. Cardano's platform is being constructed in layers. The \textit{settlement layer} serves as a unit of account with ADA as its native token while the \textit{computation layer} will handle smart contract functionality. Like Ethereum, Cardano also serves as a decentralized applications platform, however, unlike Ethereum, Cardano's smart contracting language, Plutus, is based on Haskell, a functional programming language which complements the immutable nature of the blockchain. Cardano's Ledger\cite{zahnentferner2018chimeric} uses both UTXO and Account based transaction model.
