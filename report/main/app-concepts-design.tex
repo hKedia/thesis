@@ -56,7 +56,7 @@
 		
 		Along with the decentralized storage capabilities of DHT and the speed of BitTorrent's protocol, we also want data permanence. Therefore, its necessary to incentivize the nodes storing the data in some way. Moreover, we also need to ensure that the links to the data don't die, an idea which was first proposed in Project Xanadu\cite{rayward1994visions}.
 		
-		\subsubsection{InterPlanetary File System (IPFS)} 
+		\subsubsection{InterPlanetary File System (IPFS)}\label{sec:ipfs}
 			IPFS\cite{benet2014ipfs} is a peer-to-peer file transfer protocol that implements these features, enabling a more permanent, decentralized Web, where links don't die and no single entity controls the data. It achieves this by combining previous peer-to-peer technologies such as DHT, BitTorrent and Git\cite{loeliger2012version}. Data in the IPFS network is modeled as a \textit{merkleDAG\footnote{Similar to a Merkle tree data structure, however, they do not need to be balanced and it's non-leaf nodes can contain some data.}}, a simple data structure that can be conceptualized as a series of nodes connected to each other\cite{raval2016decentralized}. This makes IPFS a \textit{content-addressed\footnote{A content-addressed storage is way to store information such that it can retrieved based on its content and not its location.}} system allowing efficient data lookup and retrieval as it doesn't rely on a single server to access the data.
 		
 			\begin{figure}[h]

@@ -3,7 +3,76 @@
 		This chapter compares and analyzes the two \textit{proof-of-concept} applications, \textit{dShare-ethereum} and \textit{dShare-blockstack} for file sharing. We also compare the underlying protocols for decentralized timestamping and decentralized storage. Finally, we compare different blockchains and outline their salient features.
 		
 	\section{Decentralized File Sharing Applications}
-		This section compares and analyses the two \textit{proof-of-concept} decentralized file sharing applications as described in Chapter~\ref{chapter:building-dapp}. We limit our analysis to the functionalities of the two applications and how they stack against the requirements as described in Section~\ref{sec:requirements}.
+		This section compares the functionalities of the two applications and the core protocols used for building them.
+		
+		\subsection{Underlying Platform}
+		As can be inferred from the names, 1st application is built upon Ethereum\cite{buterin2014ethereum}, while the 2nd is built upon Blockstack\cite{ali2016blockstack}. Analyzing the core protocols that make up the two applications will give us a better understanding in choosing which platform is better suited for building decentralized applications with data ownership. Below subsections highlights the core technical differences between Ethereum and Blockstack.\footnote{\url{https://forum.blockstack.org/t/what-is-the-difference-between-blockstack-and-ethereum/781}}
+		
+			\begin{table}[h]
+			\resizebox{\textwidth}{!}{%
+				\begin{tabular}{r|c|c|}
+					\cline{2-3}
+					\multicolumn{1}{l|}{}                              & \textbf{Ethereum}                                                                                                  & \textbf{Blockstack}                                                                                                    \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Architecture}}        & \cellcolor[HTML]{F4E7E6}Layer -1 system                                                                            & \cellcolor[HTML]{DDF7D4}Layer - 2 system                                                                               \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Application Storage}} & \cellcolor[HTML]{F4E7E6}On - chain                                                                                 & \cellcolor[HTML]{DDF7D4}Off - chain                                                                                    \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Computation}}         & \cellcolor[HTML]{F4E7E6}On - chain                                                                                 & \cellcolor[HTML]{DDF7D4}Off - chain                                                                                    \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Programming Model}}   & \cellcolor[HTML]{F4E7E6}On - chain programs                                                                        & \cellcolor[HTML]{DDF7D4}Off - chain programs                                                                           \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Smart Contracts}}     & \cellcolor[HTML]{F4E7E6}Solidity                                                                                   & \cellcolor[HTML]{DDF7D4}Clarity                                                                                        \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Scalability}}         & \cellcolor[HTML]{F4E7E6}\begin{tabular}[c]{@{}c@{}}On -chain complexity\\ makes it difficult to scale\end{tabular} & \cellcolor[HTML]{DDF7D4}\begin{tabular}[c]{@{}c@{}}Minimum On - chain complexity\\ makes it easy to scale\end{tabular} \\ \hline
+				\end{tabular}%
+			}
+			\caption{Comparing Ethereum and Blockstack}
+			\label{tab:ethereum-blockstack}
+		\end{table}
+		
+			\subsubsection{Protocol Architecture}
+			Ethereum is a "layer 1" system. All the complexity and computations is handled at the blockchain layer. Things like scalability and security concerns also need to be addressed at the blockchain layer. 
+			
+			Blockstack is a "layer 2" system. It puts minimal logic at the blockchain layer and handles scalability and security concerns outside the blockchain by reusing existing internet protocols. This makes it blockchain agnostic. The current version of Blockstack runs on top of the Bitcoin blockchain.
+		
+			\subsubsection{Computation and Storage}
+			In Blockstack, all computation and storage happens outside the blockchain, and blockchain is used only as a "shared source of truth" between participating nodes and clients. In Ethereum, on the other hand, all computation and most application storage happens inside blockchain itself.
+			
+			\subsubsection{Programming Model}
+			"Blockstack's programming model is based on running off-chain programs. These programs can be written in any language". For certain use-cases on-chain smart contracts can be written in Clarity\footnote{\url{https://docs.blockstack.org/core/smart/overview.html}}, a list processing (LISP) language.
+			
+			"Ethereum's programming model is based on running on-chain smart contracts". These programs are written in languages like Solidity\footnote{\url{https://github.com/ethereum/wiki/wiki/Programming-languages-intro}}, which is quite new and contain multiple design flaws. Nicola et al. compiled a list of vulnerabilities in their paper \textit{A survey of attacks on Ethereum smart contracts}\cite{atzei2016survey}.
+			
+			\subsubsection{Scalability of Computations}
+			Blockstack employs the concept of \textit{virtual chain}\cite{nelson2016extending}, where nodes only need to reach consensus on the shared "virtual chain" they are interacting with. This allows for a single blockchain to host multiple virtual chains. By contrast, since smart contracts run at the blockchain layer, all Ethereum nodes must process all smart contracts' computations to reach consensus. This makes running smart contracts on Ethereum quite expensive over a period of time.
+		
+		\subsection{Authentication}
+		Both \textit{dShare-ethereum} and \textit{dShare-blockstack} require its users to create a key pair which is anchored on a blockchain. In case of \textit{dShare-ethereum}, users create a cryptographic key pair using MetaMask, a crypto wallet for the Ethereum blockchain. The public key is then used to login to the application. The public Ethereum address associated with the keys is a hexadecimal string (eg. \texttt{0x931Ec0cFfD0DE326055944f4ac7c524ABe6c49fb}) and therefore is not human-meaningful.
+		
+		\textit{dShare-blockstack}, on the other hand, uses the Blockstack browser\footnote{\url{https://browser.blockstack.org/}} for key pair generation. The public Blockstack ID\footnote{\url{https://docs.blockstack.org/browser/ids-introduction.html}} associated with a key pair is a human-meaningful string (eg. \texttt{harshkedia.id}) and therefore provides a much richer user experience.
+		
+		\subsection{File Uploading}
+		\textit{dShare-ethereum} uses the IPFS\cite{benet2014ipfs} network (see Section~\ref{sec:ipfs}) and \textit{dShare-blockstack} uses the Gaia storage system (see Section~\ref{sec:blockstack-gaia}) for storing of files uploaded by the users. Table~\ref{tab:ipfs-gaia}\footnote{\url{https://docs.blockstack.org/storage/overview.html\#gaia-versus-other-storage-systems}} lists the key differences between IPFS and Gaia in terms of features.
+		
+		\begin{table}[h]
+			\resizebox{\textwidth}{!}{%
+				\begin{tabular}{|r|c|c|}
+					\hline
+					\multicolumn{1}{|c|}{\textit{Features}}            & \multicolumn{1}{l|}{\textbf{IPFS}} & \multicolumn{1}{l|}{\textbf{Gaia}} \\ \hline
+					\textit{User controls where data is hosted}        & No                                 & Yes                                \\ \hline
+					\textit{Data can be viewed in a web browser}       & Yes                                & Yes                                \\ \hline
+					\textit{Data is read/write}                        & No                                 & Yes                                \\ \hline
+					\textit{Data can be deleted}                       & No                                 & Yes                                \\ \hline
+					\textit{Data can be listed}                        & No                                 & Yes                                \\ \hline
+					\textit{Data lookups have predictable performance} & No                                 & Yes                                \\ \hline
+					\textit{Write permission can be delegated}         & No                                 & Yes                                \\ \hline
+					\textit{Listing permission can be delegated}       & No                                 & Yes                                \\ \hline
+					\textit{Supports multiple backends natively}       & No                                 & Yes                                \\ \hline
+					\textit{Data is globally addressable}              & Yes                                & Yes                                \\ \hline
+					\textit{Needs a cryptocurrency to work}            & No                                 & No                                 \\ \hline
+					\textit{Data is content-addresses}                 & Yes                                & No                                 \\ \hline
+				\end{tabular}%
+			}
+			\caption{Comparing IPFS and Gaia}
+			\label{tab:ipfs-gaia}
+		\end{table}
+		
+		\subsection{File Sharing}
 		
 	\section{Decentralized Timestamping}
 	
@@ -52,19 +121,19 @@
 		
 	\section{Blockchains}
 	
-		\begin{table}[h]
+		\begin{table}[]
 			\resizebox{\textwidth}{!}{%
 				\begin{tabular}{r|c|c|c|}
 					\cline{2-4}
-					\multicolumn{1}{l|}{}                              & \textbf{Bitcoin}                       & \textbf{Ethereum}                             & \textbf{Cardano}                              \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Consensus Algorithm}} & \cellcolor[HTML]{F7F7C9}Proof Of Work  & \cellcolor[HTML]{F7F7C9}Proof Of Work         & \cellcolor[HTML]{DDF7D4}Proof Of Stake        \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Architecture}}        & \cellcolor[HTML]{F7F7C9}1 - layered    & \cellcolor[HTML]{F7F7C9}1 - layered           & \cellcolor[HTML]{DDF7D4}2 - layered           \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Smart Contracts}}     & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F7F7C9}Yes (Solidity, Vyper) & \cellcolor[HTML]{DDF7D4}Yes (Plutus, Marlowe) \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Block Time}}          & \cellcolor[HTML]{F4E7E6}$\sim$10 min   & \cellcolor[HTML]{DDF7D4}$\sim$15 sec          & \cellcolor[HTML]{DDF7D4}$\sim$20 sec          \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Native Token}}        & \cellcolor[HTML]{F7F7C9}Bitcoin or BTC & \cellcolor[HTML]{F7F7C9}Ether or ETH          & \cellcolor[HTML]{F7F7C9}ADA                   \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Ledger}}              & UTXO based                             & Account based                                & UTXO \& Account based                        \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Treasury}}            & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F4E7E6}No                    & \cellcolor[HTML]{DDF7D4}Yes                   \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Governance}}          & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F4E7E6}No                    & \cellcolor[HTML]{DDF7D4}On - Chain            \\ \hline
+					\multicolumn{1}{l|}{}                              & \textbf{Bitcoin}                       & \textbf{Ethereum}                             & \textbf{Cardano}                               \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Consensus Algorithm}} & \cellcolor[HTML]{F7F7C9}Proof Of Work  & \cellcolor[HTML]{F7F7C9}Proof Of Work         & \cellcolor[HTML]{DDF7D4}Proof Of Stake         \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Architecture}}        & \cellcolor[HTML]{F7F7C9}1 - layered    & \cellcolor[HTML]{F7F7C9}1 - layered           & \cellcolor[HTML]{DDF7D4}2 - layered            \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Smart Contracts}}     & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F7F7C9}Yes (Solidity, Vyper) & \cellcolor[HTML]{DDF7D4}Yes (Plutus, Marlowe)  \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Block Time}}          & \cellcolor[HTML]{F4E7E6}$\sim$10 min   & \cellcolor[HTML]{DDF7D4}$\sim$15 sec          & \cellcolor[HTML]{DDF7D4}$\sim$20 sec           \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Native Token}}        & \cellcolor[HTML]{F7F7C9}Bitcoin or BTC & \cellcolor[HTML]{F7F7C9}Ether or ETH          & \cellcolor[HTML]{F7F7C9}ADA                    \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Ledger}}              & \cellcolor[HTML]{F7F7C9}UTXO based     & \cellcolor[HTML]{F7F7C9}Accounts based        & \cellcolor[HTML]{F7F7C9}UTXO \& Accounts based \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Treasury}}            & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F4E7E6}No                    & \cellcolor[HTML]{DDF7D4}Yes                    \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Governance}}          & \cellcolor[HTML]{F4E7E6}No             & \cellcolor[HTML]{F4E7E6}No                    & \cellcolor[HTML]{DDF7D4}On - Chain             \\ \hline
 				\end{tabular}%
 			}
 			\caption{Comparing Public Blockchains}
