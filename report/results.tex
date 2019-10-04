@@ -74,9 +74,14 @@
 		
 		Every upload using \textit{dShare-ethereum} involves a smart contract transaction. The user needs to have some ether to initiate an upload. Further, she needs to wait for the transaction to confirm before she can see the changes successfully reflected in the application. \textit{dShare-blockstack}, on the other hand, does not need any crypto tokens as there are no smart contract transaction involved.
 		
-		We compared the upload times between two applications using Chrome DevTools\footnote{\url{https://developers.google.com/web/tools/chrome-devtools/evaluate-performance}}. Keeping everything same, \textit{dShare-blockstack} is 8 times faster than \textit{dShare-ethereum} for a given file upload. Test data for the comparison can be found at 
+		We compared the upload times between two applications using Chrome DevTools\footnote{\url{https://developers.google.com/web/tools/chrome-devtools/evaluate-performance}}. Keeping everything same, \textit{dShare-blockstack} is 8 times faster than \textit{dShare-ethereum} for a given file upload. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
 		
 		\subsection{File Sharing}
+		Sharing of files using \textit{dShare-ethereum} involves manually retrieving one's own private key from MetaMask, getting the public Ethereum address of the recipient and finally submitting a smart contract transaction. Here the data stored in the smart contract acts as the single source of truth.
+		
+		Sharing in \textit{dShare-blockstack} involves submitting a form along with the recipient's Blockstack ID. Blockstack provides functions for automatic retrieval of user's private key. It then creates a data model using radiks indexing server. All data associated with a shared file is saved in Gaia.
+		
+		Comparing the share performance of the two applications using Chrome DevTools reveals that \textit{dShare-blockstack} is 6 times faster than \textit{dShare-ethereum} for file sharing. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
 		
 	\section{Decentralized Timestamping}
 	
@@ -124,8 +129,9 @@
 		IPFS, on the other hand, does not provide encryption by default. Files on the IPFS network are accessed by their hashes; thus anyone with the file's hash can access the file. There are no storage contracts involved for storing files on the IPFS network and it does not require any crypto tokens for accessing the network.
 		
 	\section{Blockchains}
+		Table~\ref{tab:blockchains} gives a comparison overview for some public blockchains. Bitcoin\cite{nakamoto2008bitcoin} is the first generation blockchain which uses \textit{proof-of-work} as its consensus algorithm. Its designed as a single layer system with a non Turing-complete scripting language\footnote{\url{https://en.bitcoin.it/wiki/Script}} for transactions. It's unit of account, BTC, serves as a store of value and is used to pay for transactions. Bitcoin's Ledger uses a UTXO (unspent transaction output) based transaction model.
 	
-		\begin{table}[]
+		\begin{table}[h]
 			\resizebox{\textwidth}{!}{%
 				\begin{tabular}{r|c|c|c|}
 					\cline{2-4}
@@ -143,8 +149,6 @@
 			\caption{Comparing Public Blockchains}
 			\label{tab:blockchains}
 		\end{table}
-	
-		Table~\ref{tab:blockchains} gives a comparison overview for some public blockchains. Bitcoin\cite{nakamoto2008bitcoin} is the first generation blockchain which uses \textit{proof-of-work} as its consensus algorithm. Its designed as a single layer system with a non Turing-complete scripting language\footnote{\url{https://en.bitcoin.it/wiki/Script}} for transactions. It's unit of account, BTC, serves as a store of value and is used to pay for transactions. Bitcoin's Ledger uses a UTXO (unspent transaction output) based transaction model.
 		
 		Ethereum\cite{buterin2014ethereum} is a second generation blockchain which like Bitcoin uses \textit{proof-of-work} as its consensus algorithm. It also has a single layered architecture with a Turing-complete scripting language\footnote{\url{https://github.com/ethereum/solidity}}. Ethereum serves as a platform for building decentralized applications. It's Ledger uses a Accounts based transaction model with ETH as the native currency.
 		
