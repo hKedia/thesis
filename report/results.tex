@@ -72,6 +72,10 @@
 			\label{tab:ipfs-gaia}
 		\end{table}
 		
+		Every upload using \textit{dShare-ethereum} involves a smart contract transaction. The user needs to have some ether to initiate an upload. Further, she needs to wait for the transaction to confirm before she can see the changes successfully reflected in the application. \textit{dShare-blockstack}, on the other hand, does not need any crypto tokens as there are no smart contract transaction involved.
+		
+		We compared the upload times between two applications using Chrome DevTools\footnote{\url{https://developers.google.com/web/tools/chrome-devtools/evaluate-performance}}. Keeping everything same, \textit{dShare-blockstack} is 8 times faster than \textit{dShare-ethereum} for a given file upload. Test data for the comparison can be found at 
+		
 		\subsection{File Sharing}
 		
 	\section{Decentralized Timestamping}
