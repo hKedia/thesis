@@ -1,1 +1,15 @@
 \chapter{Discussion}\label{chapter::discussion}
+
+	Chapter~\ref{chapter::results} analyzed and compared the two \textit{proof-of-concept} applications and their underlying technology. This chapter focuses on interpreting the results and showing the state-of-the-art in decentralized technologies for building applications with data ownership. 
+	
+	\section{On Decentralized Application Platform}
+	Analyzing the underlying platforms on which the two applications are built, its clear that Blockstack, due to its layered architecture is much more flexible and robust than Ethereum. Blockstack's separation of computations and storage from the blockchain layer makes it easier to scale and upgrade. It's integrated DPKI system offers its users with a self-sovereign identity. Building applications around the concept of a decentralized identity enable us to build a web where everyone owns their data.
+	
+	Ethereum, too is moving towards a layered architecture with their Eth 2.0 upgrade. The upgrade is spread across three phases. The complete specifications for the upgrade can be found at \url{https://github.com/ethereum/eth2.0-specs}.
+	
+	\section{On Decentralized Storage}
+	Applications with data ownership involves encrypted data where storage systems are incentivized to store data. IPFS (see Section~\ref{sec:ipfs}) offers a content-addressed storage systems using p2p technologies like DHT, Git and BitTorrent. Gaia (see Section~\ref{sec:blockstack-gaia}) offers mutable data storage using existing cloud infrastructure. It's clear that both IPFS and Gaia enables a decentralized storage system serving different use cases. IPFS is more suitable for applications where nature of data is immutable and where decentralization precedes performance. Gaia, on the hand, is more suitable for applications where is data is mutable and data availability is crucial.
+	
+	\section{On Blockchains}
+	Blockchain is the key enabler for building decentralized applications. It serves as the layer for value transfer in the Internet protocol stack. As inferred from results, blockchains based on \textit{proof-of-stake} are much more scalable and computationally inexpensive to use than blockchains based on \textit{proof-of-work}. Since, Blockchain enables a peer-to-peer information economy, it important that its built with strong security guarantees. Also, as public blockchains don't have a single entity controlling the system, its important for a blockchain to have a treasury and a governance system.
+	
