@@ -28,6 +28,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
 \usepackage{graphicx}					% graphics, of course
 \usepackage{color}                      % to define colors
 \usepackage{amsmath, amssymb}	        % math symbols for sets etc
@@ -142,6 +145,11 @@
   fontfamily=courier, fontsize=\footnotesize,
   commandchars=\\\{\}
 }
+
+\setmainlanguage{english}
+\setotherlanguage{sanskrit}
+
+\newfontfamily\devanagarifont[Script=Devanagari]{Lohit-Devanagari.ttf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% DOCUMENT
