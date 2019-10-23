@@ -41,12 +41,12 @@ As can be inferred from the names, the first application is built upon Ethereum\
 			\subsubsection{Scalability of Computations}
 			Blockstack employs the concept of \textit{virtual chain}\cite{nelson2016extending}, where nodes only need to reach consensus on the shared ``virtual chain" they are interacting with. This allows for a single blockchain to host multiple virtual chains. By contrast, since smart contracts run at the blockchain layer, all Ethereum nodes must process all smart contracts' computations to reach consensus. This makes running smart contracts on Ethereum quite expensive over a period of time.
 			
-			\subsection{Authentication}
+		\subsection{Authentication}
 			Both \textit{dShare-ethereum} and \textit{dShare-blockstack} require its users to create a key pair which is anchored on a blockchain. In the case of \textit{dShare-ethereum}, users create a cryptographic key pair using MetaMask, a crypto wallet for the Ethereum blockchain. The public key is then used to login to the application. The public Ethereum address associated with the keys is a hexadecimal string (eg. \texttt{0x931Ec0cFfD0DE326055944f4ac7c524ABe6c49fb}). The users do have an option to associate their address with a human-meaningful name by registering a \textit{.eth} domain using the Ethereum Name Service (ENS)\footnote{https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md}.
 			
 			\textit{dShare-blockstack}, on the other hand, uses the Blockstack browser\footnote{\url{https://browser.blockstack.org/}} for key pair generation. The public Blockstack ID\footnote{\url{https://docs.blockstack.org/browser/ids-introduction.html}} associated with a key pair too is a hexadecimal string (eg. \texttt{ID-14CMEMrxGi9Ra8gv2TKhWmMZVwzmwLxiNt}) with an option to create a human-meaningful string.
 			
-			\subsection{File Uploading}
+		\subsection{File Uploading}
 			\textit{dShare-ethereum} uses the IPFS\cite{benet2014ipfs} network (see Section~\ref{sec:ipfs}) and \textit{dShare-blockstack} uses the Gaia storage system (see Section~\ref{sec:blockstack-gaia}) for storing of files uploaded by the users. Table~\ref{tab:ipfs-gaia}\footnote{\url{https://docs.blockstack.org/storage/overview.html\#gaia-versus-other-storage-systems}} lists the key differences between IPFS and Gaia in terms of features.
 		
 		\begin{table}[h]
@@ -77,11 +77,11 @@ As can be inferred from the names, the first application is built upon Ethereum\
 		We compared the upload times between two applications using Chrome DevTools\footnote{\url{https://developers.google.com/web/tools/chrome-devtools/evaluate-performance}}. Keeping everything same, \textit{dShare-blockstack} is 8 times faster than \textit{dShare-ethereum} for a given file upload. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
 		
 		\subsection{File Sharing}
-		Sharing of files using \textit{dShare-ethereum} involves manually retrieving one's private key from MetaMask, getting the public Ethereum address of the recipient, and finally submitting a smart contract transaction. Here the data stored in the smart contract acts as a single source of truth.
-		
-		Sharing in \textit{dShare-blockstack} involves submitting a form along with the recipient's Blockstack ID. Blockstack provides functions for automatic retrieval of a user's private key. It then creates a data model using the radiks indexing server. All data associated with a shared file is saved in Gaia.
-		
-		Comparing the share performance of the two applications using Chrome DevTools reveals that \textit{dShare-blockstack} is 6 times faster than \textit{dShare-ethereum} for file sharing. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
+			Sharing of files using \textit{dShare-ethereum} involves manually retrieving one's private key from MetaMask, getting the public Ethereum address of the recipient, and finally submitting a smart contract transaction. Here the data stored in the smart contract acts as a single source of truth.
+			
+			Sharing in \textit{dShare-blockstack} involves submitting a form along with the recipient's Blockstack ID. Blockstack provides functions for automatic retrieval of a user's private key. It then creates a data model using the radiks indexing server. All data associated with a shared file is saved in Gaia.
+			
+			Comparing the share performance of the two applications using Chrome DevTools reveals that \textit{dShare-blockstack} is 6 times faster than \textit{dShare-ethereum} for file sharing. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
 		
 	\section{Decentralized Timestamping}
 	
