@@ -6,7 +6,7 @@ This chapter compares and analyzes the two \textit{proof-of-concept} application
 This section compares the functionalities of the two applications and the core protocols used for building them.
 
 \subsection{Underlying Platform}
-As can be inferred from the names, the first application is built upon Ethereum\cite{buterin2014ethereum}, while the second is built upon Blockstack\cite{ali2016blockstack}. Analyzing the core protocols that make up the two applications will give us a better understanding of choosing which platform is better suited for building decentralized applications with data ownership. Below subsections highlights the core technical differences between Ethereum and Blockstack.\footnote{\url{https://forum.blockstack.org/t/what-is-the-difference-between-blockstack-and-ethereum/781}}
+As can be inferred from the names, the first application is built upon Ethereum\cite{buterin2014ethereum}, while the second is built upon Blockstack\cite{ali2016blockstack}. Analyzing the core protocols that make up the two applications will give us a better understanding of choosing which platform is better suited for building decentralized applications with data ownership. Below subsections highlights the core technical differences between Ethereum and Blockstack \cite{forum:blockstack:2}.
 		
 			\begin{table}[h]
 			\resizebox{\textwidth}{!}{%
@@ -34,20 +34,20 @@ As can be inferred from the names, the first application is built upon Ethereum\
 			In Blockstack, all computation and storage happen outside the blockchain, and blockchain is used only as a ``shared source of truth" between participating nodes and clients. In Ethereum, on the other hand, all computation and most application storage happen inside the blockchain.
 			
 			\subsubsection{Programming Model}
-			``Blockstack's programming model is based on running off-chain programs. These programs can be written in any language". For certain use-cases, on-chain smart contracts can be written in \textit{Clarity}\footnote{\url{https://docs.blockstack.org/core/smart/overview.html}}, a list processing (LISP) language.
+			``Blockstack's programming model is based on running off-chain programs. These programs can be written in any language". For certain use-cases, on-chain smart contracts can be written in \textit{Clarity}\cite{doc:clarity:2}, a list processing (LISP) language.
 			
-			``Ethereum's programming model is based on running on-chain smart contracts." These programs are written in languages like \textit{Solidity}\footnote{\url{https://github.com/ethereum/wiki/wiki/Programming-languages-intro}}, which is quite new and contain multiple design flaws. Nicola et al. compiled a list of vulnerabilities in their paper \textit{A survey of attacks on Ethereum smart contracts}\cite{atzei2016survey}.
+			``Ethereum's programming model is based on running on-chain smart contracts." These programs are written in languages like \textit{Solidity}\cite{github:solidity:1}, which is quite new and contain multiple design flaws. Nicola et al. compiled a list of vulnerabilities in their paper \textit{A survey of attacks on Ethereum smart contracts}\cite{atzei2016survey}.
 			
 			\subsubsection{Scalability of Computations}
 			Blockstack employs the concept of \textit{virtual chain}\cite{nelson2016extending}, where nodes only need to reach consensus on the shared ``virtual chain" they are interacting with. This allows for a single blockchain to host multiple virtual chains. By contrast, since smart contracts run at the blockchain layer, all Ethereum nodes must process all smart contracts' computations to reach consensus. This makes running smart contracts on Ethereum quite expensive over a period of time.
 			
 		\subsection{Authentication}
-			Both \textit{dShare-ethereum} and \textit{dShare-blockstack} require its users to create a key pair which is anchored on a blockchain. In the case of \textit{dShare-ethereum}, users create a cryptographic key pair using MetaMask, a crypto wallet for the Ethereum blockchain. The public key is then used to login to the application. The public Ethereum address associated with the keys is a hexadecimal string (eg. \texttt{0x931Ec0cFfD0DE326055944f4ac7c524ABe6c49fb}). The users do have an option to associate their address with a human-meaningful name by registering a \textit{.eth} domain using the Ethereum Name Service (ENS)\footnote{https://github.com/ethereum/EIPs/blob/master/EIPS/eip-137.md}.
+			Both \textit{dShare-ethereum} and \textit{dShare-blockstack} require its users to create a key pair which is anchored on a blockchain. In the case of \textit{dShare-ethereum}, users create a cryptographic key pair using MetaMask, a crypto wallet for the Ethereum blockchain. The public key is then used to login to the application. The public Ethereum address associated with the keys is a hexadecimal string (eg. \texttt{0x931Ec0cFfD0DE326055944f4ac7c524ABe6c49fb}). The users do have an option to associate their address with a human-meaningful name by registering a \textit{.eth} domain using the Ethereum Name Service (ENS) \cite{github:eip:137}.
 			
-			\textit{dShare-blockstack}, on the other hand, uses the Blockstack browser\footnote{\url{https://browser.blockstack.org/}} for key pair generation. The public Blockstack ID\footnote{\url{https://docs.blockstack.org/browser/ids-introduction.html}} associated with a key pair too is a hexadecimal string (eg. \texttt{ID-14CMEMrxGi9Ra8gv2TKhWmMZVwzmwLxiNt}) with an option to create a human-meaningful string.
+			\textit{dShare-blockstack}, on the other hand, uses the Blockstack Browser \cite{github:bb:1} for key pair generation. The public Blockstack ID\cite{doc:blockid:2} associated with a key pair too is a hexadecimal string (eg. \texttt{ID-14CMEMrxGi9Ra8gv2TKhWmMZVwzmwLxiNt}) with an option to create a human-meaningful string.
 			
 		\subsection{File Uploading}
-			\textit{dShare-ethereum} uses the IPFS\cite{benet2014ipfs} network (see Section~\ref{sec:ipfs}) and \textit{dShare-blockstack} uses the Gaia storage system (see Section~\ref{sec:blockstack-gaia}) for storing of files uploaded by the users. Table~\ref{tab:ipfs-gaia}\footnote{\url{https://docs.blockstack.org/storage/overview.html\#gaia-versus-other-storage-systems}} lists the key differences between IPFS and Gaia in terms of features.
+			\textit{dShare-ethereum} uses the IPFS\cite{benet2014ipfs} network (see Section~\ref{sec:ipfs}) and \textit{dShare-blockstack} uses the Gaia storage system (see Section~\ref{sec:blockstack-gaia}) for storing of files uploaded by the users. Table~\ref{tab:ipfs-gaia} lists the key differences between IPFS and Gaia in terms of features.
 		
 		\begin{table}[h]
 			\resizebox{\textwidth}{!}{%
@@ -68,13 +68,13 @@ As can be inferred from the names, the first application is built upon Ethereum\
 					\textit{Data is content-addresses}                 & Yes                                & No                                 \\ \hline
 				\end{tabular}%
 			}
-			\caption{Comparing IPFS and Gaia}
+			\caption{Comparing IPFS and Gaia\protect\cite{doc:gaia:others:2}}
 			\label{tab:ipfs-gaia}
 		\end{table}
 		
 		Every upload using \textit{dShare-ethereum} involves a smart contract transaction. The user needs to have some ether to initiate an upload. Further, she needs to wait for the transaction to confirm before she can see the changes successfully reflected in the application. \textit{dShare-blockstack}, on the other hand, does not need any crypto tokens as there are no smart contract transactions involved.
 		
-		We compared the upload times between two applications using Chrome DevTools\footnote{\url{https://developers.google.com/web/tools/chrome-devtools/evaluate-performance}}. Keeping everything same, \textit{dShare-blockstack} is 8 times faster than \textit{dShare-ethereum} for a given file upload. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
+		We compared the upload times between two applications using Chrome DevTools\cite{dev:chrome:perf:2}. Keeping everything same, \textit{dShare-blockstack} is 8 times faster than \textit{dShare-ethereum} for a given file upload. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
 		
 		\subsection{File Sharing}
 			Sharing of files using \textit{dShare-ethereum} involves manually retrieving one's private key from MetaMask, getting the public Ethereum address of the recipient, and finally submitting a smart contract transaction. Here the data stored in the smart contract acts as a single source of truth.
@@ -129,7 +129,7 @@ As can be inferred from the names, the first application is built upon Ethereum\
 		IPFS, on the other hand, does not provide encryption by default. Files on the IPFS network are accessed by their hashes; thus, anyone with the file's hash can access the file. There are no storage contracts involved for storing files on the IPFS network, and it does not require any crypto tokens for accessing the network.
 		
 		\section{Blockchains}
-		Table~\ref{tab:blockchains} gives a comparative overview of some public blockchains. Bitcoin\cite{nakamoto2008bitcoin} is the first generation blockchain which uses \textit{proof-of-work} as its consensus algorithm. It's designed as a single layer system with a non-Turing-complete scripting language\footnote{\url{https://en.bitcoin.it/wiki/Script}} for transactions. It's unit of account, BTC, serves as a store of value and is used to pay for transactions. Bitcoin's Ledger uses a UTXO (unspent transaction output) based transaction model.
+		Table~\ref{tab:blockchains} gives a comparative overview of some public blockchains. Bitcoin\cite{nakamoto2008bitcoin} is the first generation blockchain which uses \textit{proof-of-work} as its consensus algorithm. It's designed as a single layer system with a non-Turing-complete scripting language \cite{wiki:bitcoin:script:2} for transactions. It's unit of account, BTC, serves as a store of value and is used to pay for transactions. Bitcoin's Ledger uses a UTXO (unspent transaction output) based transaction model.
 	
 		\begin{table}[h]
 			\resizebox{\textwidth}{!}{%
@@ -150,6 +150,6 @@ As can be inferred from the names, the first application is built upon Ethereum\
 			\label{tab:blockchains}
 		\end{table}
 		
-		Ethereum\cite{buterin2014ethereum} is a second-generation blockchain which, like Bitcoin, uses \textit{proof-of-work} as its consensus algorithm. It also has a single-layered architecture with a Turing-complete scripting language\footnote{\url{https://github.com/ethereum/solidity}}. Ethereum serves as a platform for building decentralized applications. It's Ledger uses a Accounts based transaction model with ETH as the native currency.
+		Ethereum\cite{buterin2014ethereum} is a second-generation blockchain which, like Bitcoin, uses \textit{proof-of-work} as its consensus algorithm. It also has a single-layered architecture with a Turing-complete scripting language \cite{github:solidity:1}. Ethereum serves as a platform for building decentralized applications. It's Ledger uses a Accounts based transaction model with ETH as the native currency.
 		
 		Cardano, a third-generation blockchain, uses \textit{proof-of-stake} as it's consensus algorithm. The consensus algorithm, \textit{Ouroboros}\cite{kiayias2017ouroboros}, is provably secure with strong security guarantees. Cardano's platform is being constructed in layers. The \textit{settlement layer} serves as a unit of account with ADA as its native token, while the \textit{computation layer} will handle smart contract functionality. Like Ethereum, Cardano also serves as a decentralized applications platform; however, unlike Ethereum, Cardano's smart contracting language, Plutus, is based on Haskell, a functional programming language which complements the immutable nature of the blockchain. Cardano's Ledger\cite{zahnentferner2018chimeric} uses both UTXO and Account-based transaction model.
