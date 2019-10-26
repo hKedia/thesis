@@ -26,9 +26,9 @@ As can be inferred from the names, the first application is built upon Ethereum\
 		\end{table}
 		
 			\subsubsection{Protocol Architecture}
-			Ethereum is a ``layer 1" system. All the complexity and computations are handled at the blockchain layer. Things like scalability and security concerns also need to be addressed at the blockchain layer. 
+			Ethereum is a ``layer 1" system, i.e., all the complexity and computations are handled at the blockchain layer. Things like scalability and security concerns also need to be addressed at the blockchain layer. 
 			
-			Blockstack is a ``layer 2" system. It puts minimal logic at the blockchain layer and handles scalability and security concerns outside the blockchain by reusing existing internet protocols, making it blockchain agnostic. The current version of Blockstack runs on top of the Bitcoin blockchain.
+			Blockstack is a ``layer 2" system, i.e., it puts minimal logic at the blockchain layer and handles scalability and security concerns outside the blockchain by reusing existing internet protocols, making it blockchain agnostic. The current version of Blockstack runs on top of the Bitcoin blockchain.
 			
 			\subsubsection{Computation and Storage}
 			In Blockstack, all computation and storage happen outside the blockchain, and blockchain is used only as a ``shared source of truth" between participating nodes and clients. In Ethereum, on the other hand, all computation and most application storage happen inside the blockchain.
@@ -82,6 +82,26 @@ As can be inferred from the names, the first application is built upon Ethereum\
 			Sharing in \textit{dShare-blockstack} involves submitting a form along with the recipient's Blockstack ID. Blockstack provides functions for automatic retrieval of a user's private key. It then creates a data model using the radiks indexing server. All data associated with a shared file is saved in Gaia.
 			
 			Comparing the share performance of the two applications using Chrome DevTools reveals that \textit{dShare-blockstack} is 6 times faster than \textit{dShare-ethereum} for file sharing. Test data for the comparison can be found at \url{https://github.com/hKedia/thesis/tree/master/tests}.
+			
+		\subsection{Requirements Evaluation}
+			In section~\ref{sec:requirements}, we presented the desirable properties that a decentralized file-sharing application should have. Both \textit{dShare-Ethereum} and \textit{dShare-Blockstack} provide client-side encryption where the encryption keys are in user's possession. They also provide a secure file sharing functionality with other users. However, the ability to choose a storage location is only provided by \textit{dShare-Blockstack}.
+			
+			\begin{table}[h]
+				\resizebox{\textwidth}{!}{%
+					\begin{tabular}{r|c|c|}
+						\cline{2-3}
+						\multicolumn{1}{l|}{}                                                                               & \textbf{dShare-Ethereum}    & \textbf{dShare-Blockstack}  \\ \hline
+						\rowcolor[HTML]{DDF7D4} 
+						\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Client-side encryption}}                       & Yes                         & Yes                         \\ \hline
+						\rowcolor[HTML]{DDF7D4} 
+						\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Encryption keys are in the user's possession}} & Yes                         & Yes                         \\ \hline
+						\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Users can choose the data storage location}}   & \cellcolor[HTML]{F4E7E6}No  & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
+						\multicolumn{1}{|c|}{\textbf{Easy and secure sharing of files with other users of the application}} & \cellcolor[HTML]{DDF7D4}Yes & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
+					\end{tabular}%
+				}
+				\caption{Requirements Evaluation}
+				\label{tab:requirements}
+			\end{table}
 		
 	\section{Decentralized Timestamping}
 	
