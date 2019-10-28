@@ -61,7 +61,7 @@ Figure~\ref{fig:dshare-ethereum} visualizes the application architecture. MetaMa
 
 The front-end of the application is built using React.js\cite{web:react:1}, a JavaScript library for building user interfaces. Solidity was used for writing smart contracts and deployed on the Ethereum test network, Rinkeby\cite{web:rinkeby:1}. Next.js\cite{web:next:1} was used for server-side rendering (SSR), and Firebase was used as a database for storing public Ethereum key of the users.
 
-\subsection{Working}
+\subsection{Workings}
 \subsubsection{Authentication}
 When a user logs into the application, she is presented with a MetaMask dialog, which asks her to sign a randomly generated value. This signature is used to retrieve the public key for the selected Ethereum address. The public key is then saved to the database, and the user is logged in.
 
@@ -140,7 +140,7 @@ Blockstack\cite{ali2016blockstack} is a platform for building highly scalable de
 
 Figure~\ref{fig:dshare-blockstack} visualizes the application architecture. User authentication is handled by the Blockstack Browser. Files are uploaded to the user's Gaia Hub, a private data locker in the cloud. Before uploading, files are encrypted using a symmetric key employing AES-GCM as the encryption mechanism. Sharing logic is implemented using Radiks, which provides an API for creating data models to represent uploaded files.
 
-\subsection{Working}
+\subsection{Workings}
 
 \subsubsection{Authentication}
 When a user signs into the application, she is redirected to the Blockstack browser. Here she can create a new Blockstack ID or select one of her existing IDs. See Section~\ref{sec:blockstack-auth} for the authentication flow. Once authenticated, the user is redirected back to the application and logged in. The public key of the user is saved under \textit{/keys} inside her Gaia hub, which is later used for encrypting a file's encryption key.
