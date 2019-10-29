@@ -42,7 +42,7 @@
 	
 	Figure~\ref{fig:traditional-app} shows how users interact with a traditional web application. Whenever Alice wants to interact with Bob, she sends a message to the application server, which then delivers the message to Bob. There is no direct path between Alice and Bob, resulting in centralization where the provider acts as an intermediary between Alice and Bob's interaction; effectively governing how data is stored and shared among them.
 	
-	This model of application interaction requires that we trust the providers with our data and hope that they will not misuse or sell our data without our permission. Since revelations by Edward Snowden\cite{greenwald2014no}, we now know that trust can, has, and will be broken as long as we entrust our data to a central entity\cite{raval2016decentralized}. Centralized stores of data also serve as a tool for surveillance, allowing big entities to monitor our internet behavior without our knowledge. Cloud providers, for example,  despite having a distributed backend, are centrally owned.
+	This model of application interaction requires that we trust the providers with our data and hope that they will not misuse or sell our data without our permission. Since revelations by Edward Snowden\cite{greenwald2014no}, we now know that trust can, has, and will be broken as long as we entrust our data to a central entity\cite{raval2016decentralized}. Centralized stores of data also serve as a tool for surveillance, allowing big entities to monitor our Internet behavior without our knowledge. Cloud providers, for example,  despite having a distributed backend, are centrally owned.
 	
 	Additionally, as we move from a labor-based economy to an information-based economy, data will become the primary form of value. Therefore, it is crucial that we not only possess our data but own it as the world evolves. ``An ideal solution should provide a way of storing data in a decentralized way that is robust and as trustless as possible"\cite{raval2016decentralized}.
 	
@@ -103,7 +103,7 @@
 		
 \cleardoublepage
 \section{Identity}
-	User identities are essential to using internet applications. In order to confirm their identity, users must provide some information. This information depends on the application's authentication process. If an application maintains a user database, it requires a username and a password and sometimes a second factor. If an application relies on a third-party, like Google\cite{identity:google:1} or Facebook\cite{identity:facebook:1} for identity management, it uses the OAuth 2.0 authentication\cite{hardt2012oauth} protocol, which identifies a user by generating an assertion from the identity service.
+	User identities are essential to using Internet applications. In order to confirm their identity, users must provide some information. This information depends on the application's authentication process. If an application maintains a user database, it requires a username and a password and sometimes a second factor. If an application relies on a third-party, like Google\cite{identity:google:1} or Facebook\cite{identity:facebook:1} for identity management, it uses the OAuth 2.0 authentication\cite{rfc6749} protocol, which identifies a user by generating an assertion from the identity service.
 	
 	Third-party identity providers implementing the OAuth protocol often have their own version of the implementation, which leads to identity fragmentation across the web. OpenID\cite{recordon2006openid} is a decentralized identity protocol that allows users to create one identity which can be carried across multiple providers. However, the user still needs to trust one of the service providers with their identity information\cite{raval2016decentralized}.
 	
@@ -167,7 +167,7 @@
 
 \cleardoublepage
 \section{Value}
-	Value helps us to quantify quantities of an asset in order to make them measurable \cite{medium:iov:1}. It can mean money, intellectual property, or securities. In traditional internet applications, trust is required in a third-party (a bank or a financial institution) when transferring value between two entities. While this system works well enough for most transactions, it still suffers from the inherent weaknesses of the trust-based model\cite{nakamoto2008bitcoin}.
+	Value helps us to quantify quantities of an asset in order to make them measurable \cite{medium:iov:1}. It can mean money, intellectual property, or securities. In traditional Internet applications, trust is required in a third-party (a bank or a financial institution) when transferring value between two entities. While this system works well enough for most transactions, it still suffers from the inherent weaknesses of the trust-based model\cite{nakamoto2008bitcoin}.
 	
 	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{figures/state-transition}
@@ -175,7 +175,7 @@
 	\end{figure}
 	\footnotetext{Adapted from \cite{buterin2014ethereum}}
 	
-	Bitcoin\cite{nakamoto2008bitcoin} was the first peer-to-peer electronic payment system based on cryptographic proof instead of trust, allowing any two entities to transfer value over the internet without the need for any trusted third-party. Transaction in the Bitcoin network involves digitally signing the hash of the previous transaction and the public key of the recipient, and adding these to the end of the transaction. Multiple transactions are combined to form a block, and each block is linked with the previous block by it's hash and a \textit{nonce} generated by a proof-of-work\cite{back2002hashcash} algorithm. This chain of blocks forms a distributed data structure called the \textit{blockchain}. It can be visualized as a state transition system (see Figure~\ref{fig:state-transition}), where a \textit{state} consists of the ownership status of all existing bitcoins and a \textit{state transition function} that takes a state and a transaction and outputs a new state\cite{buterin2014ethereum}.
+	Bitcoin\cite{nakamoto2008bitcoin} was the first peer-to-peer electronic payment system based on cryptographic proof instead of trust, allowing any two entities to transfer value over the Internet without the need for any trusted third-party. Transaction in the Bitcoin network involves digitally signing the hash of the previous transaction and the public key of the recipient, and adding these to the end of the transaction. Multiple transactions are combined to form a block, and each block is linked with the previous block by it's hash and a \textit{nonce} generated by a proof-of-work\cite{back2002hashcash} algorithm. This chain of blocks forms a distributed data structure called the \textit{blockchain}. It can be visualized as a state transition system (see Figure~\ref{fig:state-transition}), where a \textit{state} consists of the ownership status of all existing bitcoins and a \textit{state transition function} that takes a state and a transaction and outputs a new state\cite{buterin2014ethereum}.
 	
 	Blockchain, the underlying technology of Bitcoin, can also be applied to build systems that can represent assets in the physical world. For example, \textit{Secure property titles with owner authority}\cite{szabo1998nick}, a document written by Nick Szabo describes how a blockchain-based system can be used to build a land registry. Ethereum\cite{buterin2014ethereum}, an alternative protocol with a built-in Turing-complete programming language, enables such systems by allowing anyone to write \textit{smart contracts}\cite{szabo1997formalizing} where they can create their own arbitrary rules of ownership.
 	
@@ -188,18 +188,18 @@
 
 \cleardoublepage
 \section{Computing}
-	Any web application needs computing resources to work. Traditional internet relied on a \textit{client-server} model where the server is a more powerful, better-connected machine and thus provided most of the computing resources. However, this also made the server a single bottleneck for performance and reliability \cite{crowcroft2003peer}. As internet connectivity improved and web applications became increasingly complex, the demand for computing resources increased.
+	Any web application needs computing resources to work. Traditional Internet relied on a \textit{client-server} model where the server is a more powerful, better-connected machine and thus provided most of the computing resources. However, this also made the server a single bottleneck for performance and reliability \cite{crowcroft2003peer}. As Internet connectivity improved and web applications became increasingly complex, the demand for computing resources increased.
 	
 	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{figures/service-models}
 		\caption{\label{fig:service-models} Cloud computing service models\protect\cite{image:cloud:1}}
 	\end{figure}
 	
-	\textit{Virtualization}\cite{pub:vm:1}, a concept pioneered by the VM\cite{creasy1981origin} operating system led to the emergence of \textit{cloud computing}. Cloud computing satisfied the growing demand for web applications by providing on-demand delivery of computing resources over the internet. It greatly defined the current internet architecture, where applications rely on cloud services providers who provides computing resources based on different service models (Figure~\ref{fig:service-models}).
+	\textit{Virtualization}\cite{pub:vm:1}, a concept pioneered by the VM\cite{creasy1981origin} operating system led to the emergence of \textit{cloud computing}. Cloud computing satisfied the growing demand for web applications by providing on-demand delivery of computing resources over the Internet. It greatly defined the current Internet architecture, where applications rely on cloud services providers who provides computing resources based on different service models (Figure~\ref{fig:service-models}).
 	
 	Cloud computing, however, poses severe privacy concerns. It requires entrusting data to information systems managed by third-party cloud service providers who have access to all of the user's data at any time and could accidentally or deliberately use it for unauthorized purposes\cite{ryan2011cloud}. Because data from multiple entities are stored on large cloud servers, it poses security concerns as well. Hackers can theoretically gain control of vast amounts of data through a single attack - a process called \textit{hyperjacking}\cite{pub:hyperjack:1}.
 	
-	Blockchain can be used to create a decentralized global market where infrastructure providers,  application owners, and individual users can come together to trade their unused computing resources. It can also allow us to harness the computing resources of millions of personal computers and workstations connected to the public internet, which have hundreds of compute cycles going unused every second\cite{crowcroft2003peer}. Coupled with end-to-end encryption, this network of connected computers can overcome the security and privacy concerns posed by Cloud computing.
+	Blockchain can be used to create a decentralized global market where infrastructure providers,  application owners, and individual users can come together to trade their unused computing resources. It can also allow us to harness the computing resources of millions of personal computers and workstations connected to the public Internet, which have hundreds of compute cycles going unused every second\cite{crowcroft2003peer}. Coupled with end-to-end encryption, this network of connected computers can overcome the security and privacy concerns posed by Cloud computing.
 	
 	\subsection{Related Work}
 		\subsubsection{Golem Network}
@@ -214,23 +214,23 @@
 
 \cleardoublepage
 \section{Bandwidth}
-	ISPs act as gateways between end-users and the internet (Figure~\ref{fig:internet-backbone}). They solve the ``last mile" problem by connecting users to the high-speed internet and acting as a central hub for communication. However, these central gateways are also central points of failure. Governments can shut them down or ask them to blacklist certain IPs\cite{raval2016decentralized}.
+	ISPs act as gateways between end-users and the Internet (Figure~\ref{fig:internet-backbone}). They solve the ``last mile" problem by connecting users to the high-speed Internet and acting as a central hub for communication. However, these central gateways are also central points of failure. Governments can shut them down or ask them to blacklist certain IPs\cite{raval2016decentralized}.
 	
 	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{figures/internet-backbone}
 		\caption{\label{fig:internet-backbone} The Internet\protect\cite{image:internet:1}}
 	\end{figure}
 	
-	Mesh networks are the decentralized version of standards internet where users do not need to go through a central gateway. In a mesh network, nodes connect to as many adjacent nodes for efficient routing of data. However, a decentralized consensus system is required to incentivize all participants to share their bandwidth. Blockchain can be used to serve as an incentive layer, effectively creating a decentralized marketplace for bandwidth. Mark Nadal and Dr. Amber Cazzell describe one such protocol in their paper \textit{A Trustless Decentralized Bandwidth Incentive}\cite{nadal2019amber}.
+	Mesh networks are the decentralized version of standards Internet where users do not need to go through a central gateway. In a mesh network, nodes connect to as many adjacent nodes for efficient routing of data. However, a decentralized consensus system is required to incentivize all participants to share their bandwidth. Blockchain can be used to serve as an incentive layer, effectively creating a decentralized marketplace for bandwidth. Mark Nadal and Amber Cazzell describe one such protocol in their paper \textit{A Trustless Decentralized Bandwidth Incentive}\cite{nadal2019amber}.
 	
 	\subsection{Related Work}
 		\subsubsection{NOIA Network}
 		``NOIA\cite{noia:doc:cache:1} network is a Distributed peer-to-peer content delivery network, governed by the blockchain" where nodes are incentivized for providing storage and unused bandwidth to the network.
 		
-		NOIA enables a \textit{programmable internet}\cite{noia:whitepaper:1} by leveraging IPv6 and Segment Routing (SR). IPv6 increases the address size from 32 bits to 128 bits. This increase in packet size allows NOIA to encode custom information in packet headers, thus providing an identification system for nodes connected to the network. These \textit{custom headers}\cite{noia:doc:ipv6:1} enables SR by leveraging the source routing paradigm. SR is then used to create a Software Defined Network (SDN), where nodes are identified by their segment identifiers (SIDs). SIDs are registered on the NOIA Ledger to create a network topology of SR enabled access points. A Decentralized Internet Transit Exchange (DITEX) is used for trading of access points as a Transit.
+		NOIA enables a \textit{programmable Internet}\cite{noia:whitepaper:1} by leveraging IPv6 and Segment Routing (SR). IPv6 increases the address size from 32 bits to 128 bits. This increase in packet size allows NOIA to encode custom information in packet headers, thus providing an identification system for nodes connected to the network. These \textit{custom headers}\cite{noia:doc:ipv6:1} enables SR by leveraging the source routing paradigm. SR is then used to create a Software Defined Network (SDN), where nodes are identified by their segment identifiers (SIDs). SIDs are registered on the NOIA Ledger to create a network topology of SR enabled access points. A Decentralized Internet Transit Exchange (DITEX) is used for trading of access points as a Transit.
 		
 		\subsubsection{Althea Network}
-		Althea\cite{althea:whitepaper:1} Network aims to solve the ``last mile" problem by connecting a source of internet connectivity to the end users using a mesh network topology where packets are forwarded using the Babel routing protocol\cite{chroboczek2011babel}. It creates a decentralized ISP where routers pay each other for bandwidth with cryptocurrencies. Governance in Althea network is done using a \textit{proof-of-stake} blockchain built using the Cosmos\cite{cosmos:network:1} protocol.
+		Althea\cite{althea:whitepaper:1} Network aims to solve the ``last mile" problem by connecting a source of Internet connectivity to the end users using a mesh network topology where packets are forwarded using the Babel routing protocol\cite{chroboczek2011babel}. It creates a decentralized ISP where routers pay each other for bandwidth with cryptocurrencies. Governance in Althea network is done using a \textit{proof-of-stake} blockchain built using the Cosmos\cite{cosmos:network:1} protocol.
 		
 		\begin{figure}[h]
 			\includegraphics[width=\linewidth]{figures/althea-network}

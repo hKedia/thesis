@@ -28,7 +28,7 @@ As can be inferred from the names, the first application is built upon Ethereum\
 			\subsubsection{Protocol Architecture}
 			Ethereum is a ``layer 1" system, i.e., all the complexity and computations are handled at the blockchain layer. Things like scalability and security concerns also need to be addressed at the blockchain layer. 
 			
-			Blockstack is a ``layer 2" system, i.e., it puts minimal logic at the blockchain layer and handles scalability and security concerns outside the blockchain by reusing existing internet protocols, making it blockchain agnostic. The current version of Blockstack runs on top of the Bitcoin blockchain.
+			Blockstack is a ``layer 2" system, i.e., it puts minimal logic at the blockchain layer and handles scalability and security concerns outside the blockchain by reusing existing Internet protocols, making it blockchain agnostic. The current version of Blockstack runs on top of the Bitcoin blockchain.
 			
 			\subsubsection{Computation and Storage}
 			In Blockstack, all computation and storage happen outside the blockchain, and blockchain is used only as a ``shared source of truth" between participating nodes and clients. In Ethereum, on the other hand, all computation and most application storage happen inside the blockchain.
@@ -90,13 +90,11 @@ As can be inferred from the names, the first application is built upon Ethereum\
 				\resizebox{\textwidth}{!}{%
 					\begin{tabular}{r|c|c|}
 						\cline{2-3}
-						\multicolumn{1}{l|}{}                                                                               & \textbf{dShare-Ethereum}    & \textbf{dShare-Blockstack}  \\ \hline
-						\rowcolor[HTML]{DDF7D4} 
-						\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Client-side encryption}}                       & Yes                         & Yes                         \\ \hline
-						\rowcolor[HTML]{DDF7D4} 
-						\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Encryption keys are in the user's possession}} & Yes                         & Yes                         \\ \hline
-						\multicolumn{1}{|r|}{\cellcolor[HTML]{FFFFFF}\textbf{Users can choose the data storage location}}   & \cellcolor[HTML]{F4E7E6}No  & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
-						\multicolumn{1}{|c|}{\textbf{Easy and secure sharing of files with other users of the application}} & \cellcolor[HTML]{DDF7D4}Yes & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
+						\multicolumn{1}{l|}{}                                                                                                                         & \textbf{dShare-Ethereum}    & \textbf{dShare-Blockstack}  \\ \hline
+						\multicolumn{1}{|r|}{\textbf{Client-side encryption}}                                                                                         & \cellcolor[HTML]{DDF7D4}Yes & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
+						\multicolumn{1}{|r|}{\textbf{\begin{tabular}[c]{@{}r@{}}Encryption keys\\ are in the user’s possession\end{tabular}}}                         & \cellcolor[HTML]{DDF7D4}Yes & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
+						\multicolumn{1}{|r|}{\textbf{\begin{tabular}[c]{@{}r@{}}Users can choose\\ the data storage location\end{tabular}}}                           & \cellcolor[HTML]{F4E7E6}No  & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
+						\multicolumn{1}{|r|}{\textbf{\begin{tabular}[c]{@{}r@{}}Easy and secure sharing of files\\ with other users of the application\end{tabular}}} & \cellcolor[HTML]{DDF7D4}Yes & \cellcolor[HTML]{DDF7D4}Yes \\ \hline
 					\end{tabular}%
 				}
 				\caption{Requirements Evaluation}
@@ -110,7 +108,7 @@ As can be inferred from the names, the first application is built upon Ethereum\
 				\begin{tabular}{r|c|c|c|}
 					\cline{2-4}
 					\multicolumn{1}{l|}{}                             & \textbf{Scalability}                 & \textbf{Anchoring Blockchain}             & \textbf{Timestamping Accuracy}          \\ \hline
-					\multicolumn{1}{|r|}{\textbf{Proof Of Existence}} & \cellcolor[HTML]{F4E7E6}Not Scalable & \cellcolor[HTML]{DDF7D4}Bitcoin           & \cellcolor[HTML]{DDF7D4}Per Block       \\ \hline
+					\multicolumn{1}{|r|}{\textbf{Proof of Existence}} & \cellcolor[HTML]{F4E7E6}Not Scalable & \cellcolor[HTML]{DDF7D4}Bitcoin           & \cellcolor[HTML]{DDF7D4}Per Block       \\ \hline
 					\multicolumn{1}{|r|}{\textbf{OriginStamp}}        & \cellcolor[HTML]{DDF7D4}Scalable     & \cellcolor[HTML]{DDF7D4}Bitcoin           & \cellcolor[HTML]{F4E7E6}Per Time Period \\ \hline
 					\multicolumn{1}{|r|}{\textbf{Chainpoint}}         & \cellcolor[HTML]{DDF7D4}Scalable     & \cellcolor[HTML]{DDF7D4}Bitcoin, Ethereum & \cellcolor[HTML]{F4E7E6}Per Time Period \\ \hline
 				\end{tabular}%
