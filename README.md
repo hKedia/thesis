@@ -2,7 +2,7 @@
 
 #### Abstract
 
-Information requires data, and an economy requires a unit of account. It is essential that in the **Information Economy** enabled by the internet, we own our data. Blockchain, with its native token, enables a unit of account. It also serves as the base layer for building a Decentralized Public Key Infrastructure (DPKI), enabling every individual to have a Self-Sovereign Identity. The concept of users owning their digital identity enables decentralized applications with Data Ownership.
+Information requires data, and an economy requires a currency as a unit of account to function. It is essential that in the **Information Economy** enabled by the Internet, we own our data. Blockchain, with its native cryptocurrency, enables a unit of account. It can also serves as the base layer for building a Decentralized Public Key Infrastructure (DPKI), enabling every individual to have a Self-Sovereign Identity. The concept of users owning their digital identity enables decentralized applications with Data Ownership.
 
 This thesis explores the different concepts which make up a web application and describes how each can be decentralized using Blockchain and other peer-to-peer protocols. We analyze the state-of-the-art in decentralized applications platforms by building two _proof-of-concept_ applications for file sharing, one built on Ethereum and second built on Blockstack.
 
